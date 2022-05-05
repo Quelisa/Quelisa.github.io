@@ -231,6 +231,134 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/05/cross-lingual-PLM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chunxia's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/05/05/cross-lingual-PLM/" itemprop="url">跨语言预训练模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-05T19:30:17+08:00">
+                2022-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>入坑的第一个项目就是国际化业务场景中的意图识别，目前主要探索的语种包括中文、英文、日文、阿文和西文。后期根据实际业务的需要将主要集中在粤语的场景中。</p>
+<p>首先对跨语言模型的进行调研，通过调研选择出合适的预训练模型，在其基础上进行fine-tune，以提高在业务上场景中的意图识别效果。有关粤语模型的调研在下一节中分享。</p>
+<h3 id="跨语言模型调研"><a href="#跨语言模型调研" class="headerlink" title="跨语言模型调研"></a>跨语言模型调研</h3><p>众所周知，在bert推出后不久，就推出了多语言bert，简称mbert。mbert与bert的唯一区别在于训练语料的不同，mbert支持104种语言，采用了110k的共享词表。虽然mbert在多语言效果上差强人意，但是很显然在提高多语言表达能力上，预训练模型还有很多工作可以做！借鉴来自机器翻译的经验和自然语言语义对齐词嵌入的经验，在mbert之后陆续提出了XLM、XLM-R、LaBSE、InfoXLM、XLM-E、VECO以及ERNIE-M等预训练多语言模型。下面主要讲解下这几个模型的核心思想和架构。</p>
+<p>XLM<a href="#reder-anchor-1"><sup>1</sup></a>模型主要是在mbert的基础上，预训练借鉴了机器翻译中的翻译语言模型使用MLM+TLM交替进行预训练。其中TLM使用平行语料，MLM使用单语训练。</p>
+<p>XLM-R<a href="#reder-anchor-2"><sup>2</sup></a>模型与XLM模型唯一的不同在于XLM-R使用了RoBerta。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><div id="refer-anchor-1"></div>
+- [1] [Lample G, Conneau A. Cross-lingual language model pretraining[J]. arXiv preprint arXiv:1901.07291, 2019.]
+<div id="refer-anchor-2"></div>
+- [2] [Conneau A, Khandelwal K, Goyal N, et al. Unsupervised cross-lingual representation learning at scale[J]. arXiv preprint arXiv:1911.02116, 2019.]
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/05/begin-to-learn-nlp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -395,7 +523,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -446,7 +574,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">道阻且长，行则将至</div>
 
 
 
@@ -454,7 +582,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
