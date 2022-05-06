@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="PLM,cross-lingual," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="入坑的第一个项目就是国际化业务场景中的意图识别，目前主要探索的语种包括中文、英文、日文、阿文和西文。后期根据实际业务的需要将主要集中在粤语的场景中。 首先对跨语言模型的进行调研，通过调研选择出合适的预训练模型，在其基础上进行fine-tune，以提高在业务上场景中的意图识别效果。有关粤语模型的调研在下一节中分享。 跨语言模型调研众所周知，在bert推出后不久，就推出了多语言bert，简称mbert">
+<meta name="description" content="我司自主研发的ReFormer获得了业界普遍的关注，近期又发布了ReFormerV2，在盛行的超大规模预训练语言模型中带来了一股清流！今天就来深入学习一下大神的Reformer！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="跨语言预训练模型">
-<meta property="og:url" content="http://example.com/2022/05/05/cross-lingual-PLM/index.html">
+<meta property="og:title" content="解读ReFormerV2">
+<meta property="og:url" content="http://example.com/2022/05/06/reformer/index.html">
 <meta property="og:site_name" content="Chunxia&#39;s Blog">
-<meta property="og:description" content="入坑的第一个项目就是国际化业务场景中的意图识别，目前主要探索的语种包括中文、英文、日文、阿文和西文。后期根据实际业务的需要将主要集中在粤语的场景中。 首先对跨语言模型的进行调研，通过调研选择出合适的预训练模型，在其基础上进行fine-tune，以提高在业务上场景中的意图识别效果。有关粤语模型的调研在下一节中分享。 跨语言模型调研众所周知，在bert推出后不久，就推出了多语言bert，简称mbert">
+<meta property="og:description" content="我司自主研发的ReFormer获得了业界普遍的关注，近期又发布了ReFormerV2，在盛行的超大规模预训练语言模型中带来了一股清流！今天就来深入学习一下大神的Reformer！">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-05-05T11:30:17.000Z">
-<meta property="article:modified_time" content="2022-05-06T07:43:21.020Z">
+<meta property="article:published_time" content="2022-05-06T07:51:19.000Z">
+<meta property="article:modified_time" content="2022-05-06T07:56:54.244Z">
 <meta property="article:author" content="chunxia">
-<meta property="article:tag" content="PLM">
-<meta property="article:tag" content="cross-lingual">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2022/05/05/cross-lingual-PLM/"/>
+  <link rel="canonical" href="http://example.com/2022/05/06/reformer/"/>
 
 
 
 
 
-  <title>跨语言预训练模型 | Chunxia's Blog</title>
+  <title>解读ReFormerV2 | Chunxia's Blog</title>
   
 
 
@@ -254,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/05/cross-lingual-PLM/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/06/reformer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -271,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">跨语言预训练模型</h1>
+          <h1 class="post-title" itemprop="name headline">解读ReFormerV2</h1>
         
 
         <div class="post-meta">
@@ -283,8 +281,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-05T19:30:17+08:00">
-                2022-05-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-06T15:51:19+08:00">
+                2022-05-06
               </time>
             
 
@@ -348,13 +346,7 @@
       
 
       
-        <p>入坑的第一个项目就是国际化业务场景中的意图识别，目前主要探索的语种包括中文、英文、日文、阿文和西文。后期根据实际业务的需要将主要集中在粤语的场景中。</p>
-<p>首先对跨语言模型的进行调研，通过调研选择出合适的预训练模型，在其基础上进行fine-tune，以提高在业务上场景中的意图识别效果。有关粤语模型的调研在下一节中分享。</p>
-<h3 id="跨语言模型调研"><a href="#跨语言模型调研" class="headerlink" title="跨语言模型调研"></a>跨语言模型调研</h3><p>众所周知，在bert推出后不久，就推出了多语言bert，简称mbert。mbert与bert的唯一区别在于训练语料的不同，mbert支持104种语言，采用了110k的共享词表。虽然mbert在多语言效果上差强人意，但是很显然在提高多语言表达能力上，预训练模型还有很多工作可以做！借鉴来自机器翻译的经验和自然语言语义对齐词嵌入的经验，在mbert之后陆续提出了XLM、XLM-R、LaBSE、InfoXLM、XLM-E、VECO以及ERNIE-M等预训练多语言模型。下面主要讲解下这几个模型的核心思想和架构。</p>
-<p>focebook在2019年提出了XLM[1]模型，XLM主要是在bert的基础上，预训练借鉴了机器翻译中的翻译语言模型使用MLM+TLM或者CLM+MLM交替进行预训练。其中TLM是使用平行语料的监督方法，MLM和CLM是使用单语训练的无监督方法。同时为了平衡多种语言的分布差异，XLM在训练是采用一个缩放的分布对不同语种进行采样，已提高低资源语言的采样数。</p>
-<p>随后，focebook在2020年又提出支持100种语言的XLM-R[2]模型，XLM-R采用了XLM的训练方法并使用RoBerta模型。XLM-R使用CommonCrawl数据集进行训练，其数据量较mbert使用的wiki有很大的增加，尤其是在低资源的语种上。实验表明XLM-R相较mbert在XNLI数据集上有很大的提升，在低资源的语种上提升也非常显著。在论文中也首次对影响多语言模型效果的因素进行了分析。主要是从高低资源的权衡以及语言采样和词汇大小的影响。论文通过实验证明了增加相似的语种进行训练可以提高该语种的效果，但是多语种会导致模型的参数增加，增加训练和推理成本。</p>
-<p>Google在2020年也推出了自己的跨语言模型LaBSE[3]。LaBSE是基于bi-encoder结构的bert模型，LaBSE支持109种语言，使用MLM+TLM基于平行语料翻译排序任务进行预训练。LaBSE在Tatoeba数据集上获得83.7%的准确率，在此之前的最佳模型得分是65.5%。有意思的是Tatoeba数据集中的30+语种，并没有参与到LaBSE的训练，但是模型依然有较好的表现，展现了LaBSE模型zero-shot的能力。最后文章分析指出，使用预训练的bert可以减少对平行语料的需求。 使用CommonCrawl的数据训练的结果比使用wiki训练的效果好，因为CommonCrawl的数据量更大，噪声也更小。还有一个有趣的发现，使用预训练对比数据选择模型（CDS）选择出来的训练数据要比直接在原始数据上进行训练效果更好，这表明LaBSE对于数据的选择是敏感的。有关这一点我觉得大多数的模型对于数据的选择可以说都是敏感的。这类问题应该归属于领域泛化问题。</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Lample G, Conneau A. Cross-lingual language model pretraining[J]. arXiv preprint arXiv:1901.07291, 2019.<br>[2] Conneau A, Khandelwal K, Goyal N, et al. Unsupervised cross-lingual representation learning at scale[J]. arXiv preprint arXiv:1911.02116, 2019.<br>[3] Feng F, Yang Y, Cer D, et al. Language-agnostic bert sentence embedding[J]. arXiv preprint arXiv:2007.01852, 2020.</p>
+        <p>我司自主研发的ReFormer获得了业界普遍的关注，近期又发布了ReFormerV2，在盛行的超大规模预训练语言模型中带来了一股清流！今天就来深入学习一下大神的Reformer！</p>
 
       
     </div>
@@ -370,14 +362,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/PLM/" rel="tag"># PLM</a>
-          
-            <a href="/tags/cross-lingual/" rel="tag"># cross-lingual</a>
-          
-        </div>
-      
 
       
       
@@ -387,8 +371,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/05/05/begin-to-learn-nlp/" rel="next" title="begin to learn nlp">
-                <i class="fa fa-chevron-left"></i> begin to learn nlp
+              <a href="/2022/05/05/cross-lingual-PLM/" rel="next" title="跨语言预训练模型">
+                <i class="fa fa-chevron-left"></i> 跨语言预训练模型
               </a>
             
           </div>
@@ -396,10 +380,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2022/05/06/reformer/" rel="prev" title="解读ReFormerV2">
-                解读ReFormerV2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -451,17 +431,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -521,22 +492,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%A8%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%B0%83%E7%A0%94"><span class="nav-number">1.</span> <span class="nav-text">跨语言模型调研</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">2.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
