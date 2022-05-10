@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="学习心得," />
+  <meta name="keywords" content="低资源语种,迁移学习," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="记录一下nlp小白的入门过程。&lt;! –more– &gt; 在做算法之前做过一年多的对话平台开发，在开发中也有接触到对话技术和对话架构，加上硕士期间研究组合问题建模与算法优化求解，并自学过机器学习算法等。所以对于转行的难度并不是很大。但是具体深入到某一个领域还有很多经验性的东西和系统化的理解需要继续摸索。 首先是探索自然语言处理所涉及的领域中主要处理的任务，因为我们组是做对话的基础交互，所以">
+<meta name="description" content="最近在做粤语模型的训练，目前专门针对粤语的预训练语言模型只有哈工大讯飞联合实验室发布的CINO (Chinese mINOrity PLM)[1]，理论上具有和粤语语系相近的多语言模型也具有一定的粤语识别能力。在LaBSE的论文中看到,虽然没有用到粤语训练，但是粤语的识别效果也比较可观。所以打算在CINO和LaBSE上针对粤语再进行训练，以提高粤语的意图识别能力。训练的第一步，当然就是要收集数据啦">
 <meta property="og:type" content="article">
-<meta property="og:title" content="begin to learn nlp">
-<meta property="og:url" content="http://example.com/2022/05/05/begin-to-learn-nlp/index.html">
+<meta property="og:title" content="粤语模型训练系列之开篇数据收集">
+<meta property="og:url" content="http://example.com/2022/05/10/pretrain-model-yue-01/index.html">
 <meta property="og:site_name" content="Chunxia&#39;s Blog">
-<meta property="og:description" content="记录一下nlp小白的入门过程。&lt;! –more– &gt; 在做算法之前做过一年多的对话平台开发，在开发中也有接触到对话技术和对话架构，加上硕士期间研究组合问题建模与算法优化求解，并自学过机器学习算法等。所以对于转行的难度并不是很大。但是具体深入到某一个领域还有很多经验性的东西和系统化的理解需要继续摸索。 首先是探索自然语言处理所涉及的领域中主要处理的任务，因为我们组是做对话的基础交互，所以">
+<meta property="og:description" content="最近在做粤语模型的训练，目前专门针对粤语的预训练语言模型只有哈工大讯飞联合实验室发布的CINO (Chinese mINOrity PLM)[1]，理论上具有和粤语语系相近的多语言模型也具有一定的粤语识别能力。在LaBSE的论文中看到,虽然没有用到粤语训练，但是粤语的识别效果也比较可观。所以打算在CINO和LaBSE上针对粤语再进行训练，以提高粤语的意图识别能力。训练的第一步，当然就是要收集数据啦">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-05-05T09:29:16.000Z">
-<meta property="article:modified_time" content="2022-05-10T02:53:19.917Z">
+<meta property="article:published_time" content="2022-05-10T03:13:48.000Z">
+<meta property="article:modified_time" content="2022-05-10T03:48:33.915Z">
 <meta property="article:author" content="chunxia">
-<meta property="article:tag" content="学习心得">
+<meta property="article:tag" content="低资源语种">
+<meta property="article:tag" content="迁移学习">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2022/05/05/begin-to-learn-nlp/"/>
+  <link rel="canonical" href="http://example.com/2022/05/10/pretrain-model-yue-01/"/>
 
 
 
 
 
-  <title>begin to learn nlp | Chunxia's Blog</title>
+  <title>粤语模型训练系列之开篇数据收集 | Chunxia's Blog</title>
   
 
 
@@ -243,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/05/begin-to-learn-nlp/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/pretrain-model-yue-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -260,7 +261,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">begin to learn nlp</h1>
+          <h1 class="post-title" itemprop="name headline">粤语模型训练系列之开篇数据收集</h1>
         
 
         <div class="post-meta">
@@ -272,8 +273,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-05T17:29:16+08:00">
-                2022-05-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-10T11:13:48+08:00">
+                2022-05-10
               </time>
             
 
@@ -295,8 +296,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">自然语言处理</span>
+                  <a href="/categories/%E8%B7%A8%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">跨语言</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B7%A8%E8%AF%AD%E8%A8%80/%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">预训练语言模型</span>
                   </a>
                 </span>
 
@@ -337,18 +349,14 @@
       
 
       
-        <p>记录一下nlp小白的入门过程。<br>&lt;! –more– &gt;</p>
-<p>在做算法之前做过一年多的对话平台开发，在开发中也有接触到对话技术和对话架构，加上硕士期间研究组合问题建模与算法优化求解，并自学过机器学习算法等。所以对于转行的难度并不是很大。但是具体深入到某一个领域还有很多经验性的东西和系统化的理解需要继续摸索。</p>
-<p>首先是探索自然语言处理所涉及的领域中主要处理的任务，因为我们组是做对话的基础交互，所以先从自然语言理解开始，在对话中自然语言理解包括两个主要的部分，一个是实体识别另一个是意图识别。当然对话又分为任务型对话和开放式对话，在入门阶段注重熟悉产业界实体识别和意图识别在落地中遇到的主要问题。</p>
-<p>探索完主要的任务后，需要在做具体任务时深入到细节，这一块主要涉及到最近流行的预训练语言模型，主要深入了解transformer、bert-tiny等模型的原理。原理可以通过阅读论文结合huggingface的transformer源码进行理解，同时可以使用huggingface提供的example和丰富的数据集、模型进行小的实验。</p>
-<p>可以动手训练模型之后，要进一步进阶，即在没有源码的情况下自己复现论文中的idea，这里主要考察的是对于Pytorch或者TensorFlow等框架熟悉，当然更重要的是对于神经网络基础的熟悉和灵活应用。在这里有几个很适合入门的学习资料：</p>
-<ol>
-<li>动手学习深度学习：<a target="_blank" rel="noopener" href="https://github.com/d2l-ai/d2l-zh">https://github.com/d2l-ai/d2l-zh</a></li>
-<li>《基于BERT模型的自然语言处理实战》</li>
-<li>《自然语言处理：基于预训练的方法》</li>
+        <p>最近在做粤语模型的训练，目前专门针对粤语的预训练语言模型只有哈工大讯飞联合实验室发布的CINO (Chinese mINOrity PLM)[1]，理论上具有和粤语语系相近的多语言模型也具有一定的粤语识别能力。在LaBSE的论文中看到,虽然没有用到粤语训练，但是粤语的识别效果也比较可观。所以打算在CINO和LaBSE上针对粤语再进行训练，以提高粤语的意图识别能力。训练的第一步，当然就是要收集数据啦！这一篇主要分享粤语语料的收集过程。<br>&lt;! –more– &gt;</p>
+<h3 id="粤语语料收集"><a href="#粤语语料收集" class="headerlink" title="粤语语料收集"></a>粤语语料收集</h3><ol>
+<li>提到多语言语料收集，Wikipedia的数据绝对是第一个想到，Wikipedia有一个专门备份的网站[2]，提高各个语种信息的备份，所有的网页内容都可以在此下载。我下载的是20220501的数据，粤语wiki的大小是88M。</li>
+<li>我在huggingface的数据集中搜到了中文和粤语的翻译平行语料：x-tech&#x2F;cantonese-mandarin-translation[3]</li>
 </ol>
-<p>在对于原理全面熟悉后，可以结合实际任务多多练习。有了基本的入门基础后，可以回过头来重新思考自然语言发展的过程，神经网络发展到现在的新范式带来的启迪，最重要的是结合针对实际的业务思考技术的融合，比如我们是做对话系统的，通过产品的思维提升对算法的改进角度。</p>
-<p>在接下来的技术博客中，我将入坑后的每一段的学习思考记录下来，与大家一起分享交流。目前正在探索跨语言模型，欢迎有想法的同学一起讨论~</p>
+<h3 id="语料数据清洗"><a href="#语料数据清洗" class="headerlink" title="语料数据清洗"></a>语料数据清洗</h3><p>前面提到的wiki数据还是带有网络格式的数据，并不能直接用于模型训练，而且数据质量并没有经过筛选。下面介绍一个好用的工具GENSIM，用来直接抽取wiki中的文本数据。</p>
+<h3 id="网络爬虫介绍"><a href="#网络爬虫介绍" class="headerlink" title="网络爬虫介绍"></a>网络爬虫介绍</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>语料收集是算法训练中看似枯燥，却又极其重要的一步，预料的质量直接关系到模型效果的好坏，失之毫厘谬以千里。如何收集并设计好的语料库需要科学的方法，和高效的开发工具！第一次真正意义上感受到了big data和数据质量的重要性！笔者在这方面经验还不是很多，还要继续深入！欢迎大家给出好的建议~</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://github.com/ymcui/Chinese-Minority-PLM">https://github.com/ymcui/Chinese-Minority-PLM</a><br>[2] <a target="_blank" rel="noopener" href="https://dumps.wikimedia.org/zh_yuewiki/">https://dumps.wikimedia.org/zh_yuewiki/</a><br>[3] <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/x-tech/cantonese-mandarin-translations">https://huggingface.co/datasets/x-tech/cantonese-mandarin-translations</a></p>
 
       
     </div>
@@ -366,7 +374,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" rel="tag"># 学习心得</a>
+            <a href="/tags/%E4%BD%8E%E8%B5%84%E6%BA%90%E8%AF%AD%E7%A7%8D/" rel="tag"># 低资源语种</a>
+          
+            <a href="/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/" rel="tag"># 迁移学习</a>
           
         </div>
       
@@ -379,15 +389,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2022/05/06/reformer/" rel="next" title="解读ReFormerV2">
+                <i class="fa fa-chevron-left"></i> 解读ReFormerV2
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2022/05/05/cross-lingual-PLM/" rel="prev" title="跨语言预训练模型">
-                跨语言预训练模型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -439,8 +449,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -500,6 +519,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B2%A4%E8%AF%AD%E8%AF%AD%E6%96%99%E6%94%B6%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">粤语语料收集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%96%99%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97"><span class="nav-number">2.</span> <span class="nav-text">语料数据清洗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.</span> <span class="nav-text">网络爬虫介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

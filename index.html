@@ -208,16 +208,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            guestbook
-          </a>
-        </li>
-      
 
       
     </ul>
@@ -237,6 +227,166 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/pretrain-model-yue-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chunxia's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/05/10/pretrain-model-yue-01/" itemprop="url">粤语模型训练系列之开篇数据收集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-10T11:13:48+08:00">
+                2022-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B7%A8%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">跨语言</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B7%A8%E8%AF%AD%E8%A8%80/%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">预训练语言模型</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在做粤语模型的训练，目前专门针对粤语的预训练语言模型只有哈工大讯飞联合实验室发布的CINO (Chinese mINOrity PLM)[1]，理论上具有和粤语语系相近的多语言模型也具有一定的粤语识别能力。在LaBSE的论文中看到,虽然没有用到粤语训练，但是粤语的识别效果也比较可观。所以打算在CINO和LaBSE上针对粤语再进行训练，以提高粤语的意图识别能力。训练的第一步，当然就是要收集数据啦！这一篇主要分享粤语语料的收集过程。<br>&lt;! –more– &gt;</p>
+<h3 id="粤语语料收集"><a href="#粤语语料收集" class="headerlink" title="粤语语料收集"></a>粤语语料收集</h3><ol>
+<li>提到多语言语料收集，Wikipedia的数据绝对是第一个想到，Wikipedia有一个专门备份的网站[2]，提高各个语种信息的备份，所有的网页内容都可以在此下载。我下载的是20220501的数据，粤语wiki的大小是88M。</li>
+<li>我在huggingface的数据集中搜到了中文和粤语的翻译平行语料：x-tech&#x2F;cantonese-mandarin-translation[3]</li>
+</ol>
+<h3 id="语料数据清洗"><a href="#语料数据清洗" class="headerlink" title="语料数据清洗"></a>语料数据清洗</h3><p>前面提到的wiki数据还是带有网络格式的数据，并不能直接用于模型训练，而且数据质量并没有经过筛选。下面介绍一个好用的工具GENSIM，用来直接抽取wiki中的文本数据。</p>
+<h3 id="网络爬虫介绍"><a href="#网络爬虫介绍" class="headerlink" title="网络爬虫介绍"></a>网络爬虫介绍</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>语料收集是算法训练中看似枯燥，却又极其重要的一步，预料的质量直接关系到模型效果的好坏，失之毫厘谬以千里。如何收集并设计好的语料库需要科学的方法，和高效的开发工具！第一次真正意义上感受到了big data和数据质量的重要性！笔者在这方面经验还不是很多，还要继续深入！欢迎大家给出好的建议~</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://github.com/ymcui/Chinese-Minority-PLM">https://github.com/ymcui/Chinese-Minority-PLM</a><br>[2] <a target="_blank" rel="noopener" href="https://dumps.wikimedia.org/zh_yuewiki/">https://dumps.wikimedia.org/zh_yuewiki/</a><br>[3] <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/x-tech/cantonese-mandarin-translations">https://huggingface.co/datasets/x-tech/cantonese-mandarin-translations</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -344,7 +494,7 @@
       
         
           
-            <p>我司自主研发的ReFormer获得了业界普遍的关注，近期又发布了ReFormerV2，在盛行的超大规模预训练语言模型中带来了一股清流！今天就来深入学习一下大神的Reformer！<br>&lt;! –more– &gt;</p>
+            <p>我司自主研发的ReFormer获得了业界普遍的关注，近期又发布了ReFormerV2，在盛行的超大规模预训练语言模型中带来了一股清流！今天就来深入学习一下大神的ReFormer！<br>&lt;! –more– &gt;</p>
 
           
         
@@ -489,7 +639,7 @@
             <p>入坑的第一个项目就是国际化业务场景中的意图识别，目前主要探索的语种包括中文、英文、日文、阿文和西文。后期根据实际业务的需要将主要集中在粤语的场景中。<br>&lt;! –more– &gt;</p>
 <p>首先对跨语言模型的进行调研，通过调研选择出合适的预训练模型，在其基础上进行fine-tune，以提高在业务上场景中的意图识别效果。有关粤语模型的调研在下一节中分享。</p>
 <h3 id="跨语言模型调研"><a href="#跨语言模型调研" class="headerlink" title="跨语言模型调研"></a>跨语言模型调研</h3><p>众所周知，在bert推出后不久，就推出了多语言bert，简称mbert。mbert与bert的唯一区别在于训练语料的不同，mbert支持104种语言，采用了110k的共享词表。虽然mbert在多语言效果上差强人意，但是很显然在提高多语言表达能力上，预训练模型还有很多工作可以做！借鉴来自机器翻译的经验和自然语言语义对齐词嵌入的经验，在mbert之后陆续提出了XLM、XLM-R、LaBSE、InfoXLM、XLM-E、VECO以及ERNIE-M等预训练多语言模型。下面主要讲解下这几个模型的核心思想和架构。</p>
-<p>focebook在2019年提出了XLM[1]模型，XLM主要是在bert的基础上，预训练借鉴了机器翻译中的翻译语言模型使用MLM+TLM或者CLM+MLM交替进行预训练。其中TLM是使用平行语料的监督方法，MLM和CLM是使用单语训练的无监督方法。同时为了平衡多种语言的分布差异，XLM在训练是采用一个缩放的分布对不同语种进行采样，已提高低资源语言的采样数。</p>
+<p>focebook在2019年提出了XLM[1]模型，XLM主要是在bert的基础上，预训练借鉴了机器翻译中的翻译语言模型使用MLM+TLM或者CLM+MLM交替进行预训练。其中TLM是使用平行语料的监督方法，MLM和CLM是使用单语训练的无监督方法。同时为了平衡多种语言的分布差异，XLM在训练时采用一个缩放的分布对不同语种进行采样，以提高低资源语言的采样数。</p>
 <p>随后，focebook在2020年又提出支持100种语言的XLM-R[2]模型，XLM-R采用了XLM的训练方法并使用RoBerta模型。XLM-R使用CommonCrawl数据集进行训练，其数据量较mbert使用的wiki有很大的增加，尤其是在低资源的语种上。实验表明XLM-R相较mbert在XNLI数据集上有很大的提升，在低资源的语种上提升也非常显著。在论文中也首次对影响多语言模型效果的因素进行了分析。主要是从高低资源的权衡以及语言采样和词汇大小的影响。论文通过实验证明了增加相似的语种进行训练可以提高该语种的效果，但是多语种会导致模型的参数增加，增加训练和推理成本。</p>
 <p>Google在2020年也推出了自己的跨语言模型LaBSE[3]。LaBSE是基于bi-encoder结构的bert模型，LaBSE支持109种语言，使用MLM+TLM基于平行语料翻译排序任务进行预训练。LaBSE在Tatoeba数据集上获得83.7%的准确率，在此之前的最佳模型得分是65.5%。有意思的是Tatoeba数据集中的30+语种，并没有参与到LaBSE的训练，但是模型依然有较好的表现，展现了LaBSE模型zero-shot的能力。最后文章分析指出，使用预训练的bert可以减少对平行语料的需求。 使用CommonCrawl的数据训练的结果比使用wiki训练的效果好，因为CommonCrawl的数据量更大，噪声也更小。还有一个有趣的发现，使用预训练对比数据选择模型（CDS）选择出来的训练数据要比直接在原始数据上进行训练效果更好，这表明LaBSE对于数据的选择是敏感的。有关这一点我觉得大多数的模型对于数据的选择可以说都是敏感的。这类问题应该归属于领域泛化问题。</p>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Lample G, Conneau A. Cross-lingual language model pretraining[J]. arXiv preprint arXiv:1901.07291, 2019.<br>[2] Conneau A, Khandelwal K, Goyal N, et al. Unsupervised cross-lingual representation learning at scale[J]. arXiv preprint arXiv:1911.02116, 2019.<br>[3] Feng F, Yang Y, Cer D, et al. Language-agnostic bert sentence embedding[J]. arXiv preprint arXiv:2007.01852, 2020.</p>
@@ -727,7 +877,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -738,7 +888,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -749,7 +899,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
