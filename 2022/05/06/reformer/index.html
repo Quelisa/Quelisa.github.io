@@ -86,11 +86,13 @@
 <meta property="og:site_name" content="Chunxia&#39;s Blog">
 <meta property="og:description" content="近期我司发布了自研预训练语言模型ReFormerV2[1]，RoFormer的核心是基于苏神的“旋转位置编码（Rotary Position Embedding，RoPE）”[2]。今天就来学习一下RoFormer的进化过程！">
 <meta property="og:locale">
+<meta property="og:image" content="https://github.com/Quelisa/picture/blob/eb694e51379595f70ff9544f07f3a8b28cd30b99/RoPE.png">
 <meta property="article:published_time" content="2022-05-06T07:51:19.000Z">
-<meta property="article:modified_time" content="2022-05-10T10:26:17.067Z">
+<meta property="article:modified_time" content="2022-05-10T13:00:25.890Z">
 <meta property="article:author" content="chunxia">
 <meta property="article:tag" content="PLM">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/Quelisa/picture/blob/eb694e51379595f70ff9544f07f3a8b28cd30b99/RoPE.png">
 
 
 
@@ -350,8 +352,12 @@
         <p>近期我司发布了自研预训练语言模型ReFormerV2[1]，RoFormer的核心是基于苏神的“旋转位置编码（Rotary Position Embedding，RoPE）”[2]。今天就来学习一下RoFormer的进化过程！</p>
 <span id="more"></span>
 
-<p>说实话，看完苏神在科学空间的博客中的公式推导，内心从激动到迷惑到放弃。但是既然要学习一下，就硬拿起来啃一下~苏神原文中的公式推导已经很好了，我在这篇文章主要分享一下我的理解过程吧！</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] <a target="_blank" rel="noopener" href="https://github.com/ZhuiyiTechnology/roformer-v2">https://github.com/ZhuiyiTechnology/roformer-v2</a><br>[2] <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/8265">https://spaces.ac.cn/archives/8265</a></p>
+<p>说实话，看完苏神在科学空间的博客中的公式推导，内心经历十分跌宕从兴致勃勃到一脸懵逼到原来如此又到顶礼膜拜。但是既然要学习一下，就硬拿起来啃一下~苏神原文中的公式推导已经很好了，我在这篇文章主要分享一下我的理解过程吧！</p>
+<h3 id="追根溯源"><a href="#追根溯源" class="headerlink" title="追根溯源"></a>追根溯源</h3><p>大家都知道Transformer[1]的编码除了有词id，还需要有词的位置编码，因为attention无法区分不同位置的词。transformer的做法是将句子中所有词的绝对位置硬编码融入到输入中去。那么这种硬编码有什么优劣呢？首先编码简单是不用说的，比如一般是设置最大长度512，按照512*dim（向量维度）初始化位置向量即可。那有什么缺点呢？其实我们可以直观的感受的这种方式比较自然容易想到，但是也比较固定，不够灵活，我们的语言是千变万化的，绝对位置的编码限制了语言的自由组合，所以研究人人员开始提出各种各样的相对位置编码。那么什么是相对的位置编码呢？其实也很直观，比如有一个输入的句子特别长，其实完全考虑整个句子的绝对位置编码得出的信息并没有那么多。相反那些相对位置比较近的词句反而可以提取出更多的语义特征，因此研究人员通过对带绝对位置的attention进行公式转换，截断长句位置信息，保留与该词位置较近的词的位置信息，当然方法是层出不群的。那么RoFormer做了什么呢？RoFoermer采用的RoPE旋转位置编码是一种融合了绝对位置编码和相对位置编码的编码方式。即保留了绝对位置信息，又增强了相对位置的信息。</p>
+<h3 id="RoPE思想"><a href="#RoPE思想" class="headerlink" title="RoPE思想"></a>RoPE思想</h3><p>一图胜千言，RoPE对于位置的编码具有远程衰减的特性。<br><img src="https://github.com/Quelisa/picture/blob/eb694e51379595f70ff9544f07f3a8b28cd30b99/RoPE.png" alt="avatar"></p>
+<p>RoFormer[4]论文中的实验也表明了使用RoPE编码的RoFormer对于长文本有很好的捕捉能力，它可以很好的处理任意长的文本。</p>
+<h3 id="RoFormerV2做了什么升级"><a href="#RoFormerV2做了什么升级" class="headerlink" title="RoFormerV2做了什么升级"></a>RoFormerV2做了什么升级</h3><p>苏神在自己的博客中[5]用到了《RoFormerV2：自然语言理解的极限探索》，可以看做是对RoformerV2的一个定位。这里的极限是指什么呢？与大多数预训练模型追求超大超深的网络不同，RoFormerV2探索的是预训练模型统一参数下性能的极限。RoFormerV2的主要改动就是简化模型建构，使得其是GLUE榜上前五名中参数数量最少的模型。RoFormerV2去点了模型中的所有bias项，并且加大了训练数据从30多G加到280G。（深度学习果然是数据为王呀！）并且RoFormerV2是从零开始训练，为了抵抗去掉参数带来的效果损失，还增加了监督的多任务进行训练。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] <a target="_blank" rel="noopener" href="https://github.com/ZhuiyiTechnology/roformer-v2">https://github.com/ZhuiyiTechnology/roformer-v2</a><br>[2] <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/8265">https://spaces.ac.cn/archives/8265</a><br>[3] Vaswani A, Shazeer N, Parmar N, et al. Attention is all you need[J]. Advances in neural information processing systems, 2017, 30.<br>[4] Su J, Lu Y, Pan S, et al. Roformer: Enhanced transformer with rotary position embedding[J]. arXiv preprint arXiv:2104.09864, 2021.<br>[5] <a target="_blank" rel="noopener" href="https://kexue.fm/archives/8998">https://kexue.fm/archives/8998</a></p>
 
       
     </div>
@@ -533,7 +539,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">1.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%BD%E6%A0%B9%E6%BA%AF%E6%BA%90"><span class="nav-number">1.</span> <span class="nav-text">追根溯源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RoPE%E6%80%9D%E6%83%B3"><span class="nav-number">2.</span> <span class="nav-text">RoPE思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RoFormerV2%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%E5%8D%87%E7%BA%A7"><span class="nav-number">3.</span> <span class="nav-text">RoFormerV2做了什么升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
