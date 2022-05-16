@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="Bert自Google在2018年底推出后，就在NLP领域取得了极大地成功，大家纷纷来研究和提高Bert的性能。因此，Bert家族得以不断扩大，我们称这些改进Bert的模型为Bert-Tiny。那么这些模型对Bert究竟做了哪些改进？又达到了怎样的效果呢？通过学习总结Bert-Tiny模型不仅可以加深对Bert的了解，还可以感受一波大佬的研究思路！下面就一起开始吧~ XLNet[1]RoBERTa">
+<meta name="description" content="Bert自Google在2018年底推出后，就在NLP领域取得了极大地成功，大家纷纷来研究和提高Bert的性能。因此，Bert家族得以不断扩大，我们称这些改进Bert的模型为Bert-Tiny。那么这些模型对Bert究竟做了哪些改进？又达到了怎样的效果呢？通过学习总结Bert-Tiny模型不仅可以加深对Bert的了解，还可以感受一波大佬的研究思路！下面就一起开始吧~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BERT 家族的故事">
 <meta property="og:url" content="http://example.com/2022/05/11/bert-family/index.html">
 <meta property="og:site_name" content="Chunxia&#39;s Blog">
-<meta property="og:description" content="Bert自Google在2018年底推出后，就在NLP领域取得了极大地成功，大家纷纷来研究和提高Bert的性能。因此，Bert家族得以不断扩大，我们称这些改进Bert的模型为Bert-Tiny。那么这些模型对Bert究竟做了哪些改进？又达到了怎样的效果呢？通过学习总结Bert-Tiny模型不仅可以加深对Bert的了解，还可以感受一波大佬的研究思路！下面就一起开始吧~ XLNet[1]RoBERTa">
+<meta property="og:description" content="Bert自Google在2018年底推出后，就在NLP领域取得了极大地成功，大家纷纷来研究和提高Bert的性能。因此，Bert家族得以不断扩大，我们称这些改进Bert的模型为Bert-Tiny。那么这些模型对Bert究竟做了哪些改进？又达到了怎样的效果呢？通过学习总结Bert-Tiny模型不仅可以加深对Bert的了解，还可以感受一波大佬的研究思路！下面就一起开始吧~">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-05-11T08:40:46.000Z">
-<meta property="article:modified_time" content="2022-05-16T07:14:35.662Z">
+<meta property="article:modified_time" content="2022-05-16T09:03:58.498Z">
 <meta property="article:author" content="chunxia">
 <meta property="article:tag" content="Bert">
 <meta name="twitter:card" content="summary">
@@ -348,6 +348,9 @@
 
       
         <p>Bert自Google在2018年底推出后，就在NLP领域取得了极大地成功，大家纷纷来研究和提高Bert的性能。因此，Bert家族得以不断扩大，我们称这些改进Bert的模型为Bert-Tiny。那么这些模型对Bert究竟做了哪些改进？又达到了怎样的效果呢？通过学习总结Bert-Tiny模型不仅可以加深对Bert的了解，还可以感受一波大佬的研究思路！下面就一起开始吧~</p>
+<span id="more"></span>
+
+
 <h3 id="XLNet-1"><a href="#XLNet-1" class="headerlink" title="XLNet[1]"></a>XLNet[1]</h3><h3 id="RoBERTa-2"><a href="#RoBERTa-2" class="headerlink" title="RoBERTa[2]"></a>RoBERTa[2]</h3><h3 id="ALBERT-3"><a href="#ALBERT-3" class="headerlink" title="ALBERT[3]"></a>ALBERT[3]</h3><h3 id="ELECTRA-4"><a href="#ELECTRA-4" class="headerlink" title="ELECTRA[4]"></a>ELECTRA[4]</h3><h3 id="ERNIE-5"><a href="#ERNIE-5" class="headerlink" title="ERNIE[5]"></a>ERNIE[5]</h3><h3 id="BERT-WWM-6"><a href="#BERT-WWM-6" class="headerlink" title="BERT-WWM[6]"></a>BERT-WWM[6]</h3><h3 id="SpanBERT-7"><a href="#SpanBERT-7" class="headerlink" title="SpanBERT[7]"></a>SpanBERT[7]</h3><h3 id="TinyBert-8"><a href="#TinyBert-8" class="headerlink" title="TinyBert[8]"></a>TinyBert[8]</h3><h3 id="DistillBERT-9"><a href="#DistillBERT-9" class="headerlink" title="DistillBERT[9]"></a>DistillBERT[9]</h3><h3 id="Sentence-BERT-10"><a href="#Sentence-BERT-10" class="headerlink" title="Sentence-BERT[10]"></a>Sentence-BERT[10]</h3><h3 id="K-BERT-11"><a href="#K-BERT-11" class="headerlink" title="K-BERT[11]"></a>K-BERT[11]</h3><h3 id="SemBert-12"><a href="#SemBert-12" class="headerlink" title="SemBert[12]"></a>SemBert[12]</h3><h3 id="StructBERT-13"><a href="#StructBERT-13" class="headerlink" title="StructBERT[13]"></a>StructBERT[13]</h3><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Yang Z, Dai Z, Yang Y, et al. Xlnet: Generalized autoregressive pretraining for language understanding[J]. Advances in neural information processing systems, 2019, 32.<br>[2] Liu Y, Ott M, Goyal N, et al. Roberta: A robustly optimized bert pretraining approach[J]. arXiv preprint arXiv:1907.11692, 2019.<br>[3] Lan Z, Chen M, Goodman S, et al. Albert: A lite bert for self-supervised learning of language representations[J]. arXiv preprint arXiv:1909.11942, 2019.<br>[4] Clark K, Luong M T, Le Q V, et al. Electra: Pre-training text encoders as discriminators rather than generators[J]. arXiv preprint arXiv:2003.10555, 2020.<br>[5] Sun Y, Wang S, Li Y, et al. Ernie: Enhanced representation through knowledge integration[J]. arXiv preprint arXiv:1904.09223, 2019.<br>[6] Cui Y, Che W, Liu T, et al. Pre-training with whole word masking for chinese bert[J]. IEEE&#x2F;ACM Transactions on Audio, Speech, and Language Processing, 2021, 29: 3504-3514.<br>[7] Joshi M, Chen D, Liu Y, et al. Spanbert: Improving pre-training by representing and predicting spans[J]. Transactions of the Association for Computational Linguistics, 2020, 8: 64-77.<br>[8] Jiao X, Yin Y, Shang L, et al. Tinybert: Distilling bert for natural language understanding[J]. arXiv preprint arXiv:1909.10351, 2019.<br>[9] Sanh V, Debut L, Chaumond J, et al. DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter[J]. arXiv preprint arXiv:1910.01108, 2019.<br>[10] Reimers N, Gurevych I. Sentence-bert: Sentence embeddings using siamese bert-networks[J]. arXiv preprint arXiv:1908.10084, 2019.<br>[11] Liu W, Zhou P, Zhao Z, et al. K-bert: Enabling language representation with knowledge graph[C]&#x2F;&#x2F;Proceedings of the AAAI Conference on Artificial Intelligence. 2020, 34(03): 2901-2908.<br>[12] Zhang Z, Wu Y, Zhao H, et al. Semantics-aware BERT for language understanding[C]&#x2F;&#x2F;Proceedings of the AAAI Conference on Artificial Intelligence. 2020, 34(05): 9628-9635.<br>[13] Wang W, Bi B, Yan M, et al. Structbert: Incorporating language structures into pre-training for deep language understanding[J]. arXiv preprint arXiv:1908.04577, 2019.</p>
 
       
