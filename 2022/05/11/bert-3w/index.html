@@ -86,11 +86,13 @@
 <meta property="og:site_name" content="Chunxia&#39;s Blog">
 <meta property="og:description" content="我在上学时学习的神经网络模型还是CNN、RNN，转眼间Transformer[1]已经一统NLP的天下了。可以说现阶段的深度学习是预训练的时代，现阶段的NLP是Bert[2]的时代。Bert源于Transformer，了解Bert的同时也是进一步探究Transformer的原理。我一直有一个观点，对事物的看法来自于认知的层次，认知的层次来自于对一个事物的提问角度，有多少好的问题就有多少好的答案。所">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/2022/05/11/bert-3w/https://github.com/Quelisa/picture/raw/eb694e51379595f70ff9544f07f3a8b28cd30b99/RoPE.png">
 <meta property="article:published_time" content="2022-05-11T08:40:29.000Z">
-<meta property="article:modified_time" content="2022-05-17T10:05:58.754Z">
+<meta property="article:modified_time" content="2022-05-17T11:52:57.863Z">
 <meta property="article:author" content="chunxia">
 <meta property="article:tag" content="Bert">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/05/11/bert-3w/https://github.com/Quelisa/picture/raw/eb694e51379595f70ff9544f07f3a8b28cd30b99/RoPE.png">
 
 
 
@@ -352,7 +354,7 @@
 
 
 <h3 id="Transformer和CNN、RNN的区别是什么，本质是什么？"><a href="#Transformer和CNN、RNN的区别是什么，本质是什么？" class="headerlink" title="Transformer和CNN、RNN的区别是什么，本质是什么？"></a>Transformer和CNN、RNN的区别是什么，本质是什么？</h3><p>这三个模型其实是代表了三种典型的神经网络。RNN代表的是循环神经网络，CNN代表的是卷积神经网络，而transformer代表的是注意力机制下的神经网络。所以要理解他们之间的区别就要了解这三种神经网络的特性。理解这三种神经网络的特点首先要了解神经网络的发展过程。最初的神经网络发展自单层感知机，由于单层感知机只是将特征加权后输出，所以不具备处理非线性问题的能力，也导致神经网络发展停滞，直到出现多层神经网络加激活函数形式的多层感知机，神经网络才再度出现在人们的视野。研究人员开始研究多层感知机的优化，首先是各种各样的激活函数的出现，随着计算机硬件能力的不断提高，通过加深网络，和提高参数量，神经网络获得了很大的进展。但是，多层感知机的全连接网络过于简单没有倾向性，以文本序列处理为例，文本之间是存在训练依赖关系的，因此发展出了循环神经网络RNN。同样CNN的出现得益于研究人员对于图像数据的特点理解，卷积神经网络更有助于获得图像的局部信息。基于以上思路，研究人员迅速改进了RNN和CNN发展出了各种现代网络变种，但是核心思想是不变的。同样，随着注意力机制在神经网络的引入，科研人员又从另一个角度来理解和分析和对比各种机制的优缺点，Transformer的大获成功在极大程度上诠释了基于自注意力机制神经网络的超强能力。下面就深入细节，具体感受一下神经网络的不同。</p>
-<h4 id="1-循环神经网络RNN"><a href="#1-循环神经网络RNN" class="headerlink" title="(1) 循环神经网络RNN"></a>(1) 循环神经网络RNN</h4><p>最初的循环神经网络其实也很好理解，网络结构如下。循环神经网络主要分为三层，输入层、隐含层和输出层。</p>
+<h4 id="1-循环神经网络RNN"><a href="#1-循环神经网络RNN" class="headerlink" title="(1) 循环神经网络RNN"></a>(1) 循环神经网络RNN</h4><p>最初的循环神经网络其实也很好理解，网络结构如下。循环神经网络主要分为三层，输入层、隐含层和输出层。之所以称之为循环神经网络是因为在隐含层会将前一个节点的隐含层输出和当前节点的出入一起输入到当前隐含节点。这样网络就会记录到前面序列的特征，而我们的文本数据很容易建成的序列模型，所以RNN可以很好地捕捉这样的特性，在自然语言处理中应用广泛。<br><img src="./https://github.com/Quelisa/picture/raw/eb694e51379595f70ff9544f07f3a8b28cd30b99/RoPE.png" width = "300" height = "200" alt="RNN网络结构" align=center /></p>
 <h4 id="2-卷积神经网络CNN"><a href="#2-卷积神经网络CNN" class="headerlink" title="(2) 卷积神经网络CNN"></a>(2) 卷积神经网络CNN</h4><h4 id="3-自注意力机制模型Transformer"><a href="#3-自注意力机制模型Transformer" class="headerlink" title="(3) 自注意力机制模型Transformer"></a>(3) 自注意力机制模型Transformer</h4><h3 id="Why-self-attention"><a href="#Why-self-attention" class="headerlink" title="Why self-attention"></a>Why self-attention</h3><h3 id="Bert和Transformer的区别是什么？"><a href="#Bert和Transformer的区别是什么？" class="headerlink" title="Bert和Transformer的区别是什么？"></a>Bert和Transformer的区别是什么？</h3><h3 id="Bert的为什么要采用这样的预训练方式？"><a href="#Bert的为什么要采用这样的预训练方式？" class="headerlink" title="Bert的为什么要采用这样的预训练方式？"></a>Bert的为什么要采用这样的预训练方式？</h3><h3 id="Bert的局限在哪里？"><a href="#Bert的局限在哪里？" class="headerlink" title="Bert的局限在哪里？"></a>Bert的局限在哪里？</h3><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Vaswani A, Shazeer N, Parmar N, et al. Attention is all you need[J]. Advances in neural information processing systems, 2017, 30.<br>[2] Devlin J, Chang M W, Lee K, et al. Bert: Pre-training of deep bidirectional transformers for language understanding[J]. arXiv preprint arXiv:1810.04805, 2018.</p>
 
       
