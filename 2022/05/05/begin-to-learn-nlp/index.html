@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="记录一个小白的NLP入门过程。在做算法之前做过一年多的对话平台开发，在开发中也有接触到对话技术和对话架构，加上硕士期间研究组合问题建模与算法优化求解，并自学过机器学习算法等。所以对于转行的难度并不是很大。但是具体深入到某一个领域还有很多经验性的东西和系统化的理解需要继续摸索。">
+<meta name="description" content="分享NLP入门到进阶心得，不断更新中…">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Begin to Learn NLP">
 <meta property="og:url" content="http://example.com/2022/05/05/begin-to-learn-nlp/index.html">
 <meta property="og:site_name" content="Chunxia&#39;s Blog">
-<meta property="og:description" content="记录一个小白的NLP入门过程。在做算法之前做过一年多的对话平台开发，在开发中也有接触到对话技术和对话架构，加上硕士期间研究组合问题建模与算法优化求解，并自学过机器学习算法等。所以对于转行的难度并不是很大。但是具体深入到某一个领域还有很多经验性的东西和系统化的理解需要继续摸索。">
+<meta property="og:description" content="分享NLP入门到进阶心得，不断更新中…">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-05-05T09:29:16.000Z">
-<meta property="article:modified_time" content="2022-05-27T09:45:53.460Z">
+<meta property="article:modified_time" content="2022-06-02T04:18:59.312Z">
 <meta property="article:author" content="chunxia">
 <meta property="article:tag" content="学习心得">
 <meta name="twitter:card" content="summary">
@@ -347,19 +347,32 @@
       
 
       
-        <p>记录一个小白的NLP入门过程。在做算法之前做过一年多的对话平台开发，在开发中也有接触到对话技术和对话架构，加上硕士期间研究组合问题建模与算法优化求解，并自学过机器学习算法等。所以对于转行的难度并不是很大。但是具体深入到某一个领域还有很多经验性的东西和系统化的理解需要继续摸索。<br><span id="more"></span></p>
-<p>首先是探索自然语言处理所涉及的领域中主要处理的任务，因为我们组是做对话的基础交互，所以先从自然语言理解开始，在对话中自然语言理解包括两个主要的部分，一个是实体识别另一个是意图识别。当然对话又分为任务型对话和开放式对话，在入门阶段注重熟悉产业界实体识别和意图识别在落地中遇到的主要问题。当然自然语言处理任务的分类也非常多，基础性的任务包括分词、词性标注、句法分析等、再上一层包括分类、推理、文本生成、信息抽取等，最上层则是各类应用如对话系统、文本分析等。</p>
-<p>探索完主要的任务后，需要在做具体任务时深入到细节，这一块主要涉及到最近流行的预训练语言模型，主要深入了解transformer、bert-tiny等模型的原理。原理可以通过阅读论文结合huggingface的transformer源码进行理解，同时可以使用huggingface提供的example和丰富的数据集、模型进行小的实验。</p>
-<p>可以动手训练模型之后，要进一步进阶，即在没有源码的情况下自己复现论文中的idea，这里主要考察的是对于Pytorch或者TensorFlow等框架熟悉，当然更重要的是对于神经网络基础的熟悉和灵活应用。在这里有几个很适合入门的学习资料：</p>
+        <p>分享NLP入门到进阶心得，不断更新中…<br><span id="more"></span></p>
+<p>一般的学习是从底层到上层，比如先学习机器学习、深度学习原理、学习自然语言处理基础分词句法分析等、词向量、预训练模型、自然语言处理任务（分类、推理、标注、生成等）、自然语言的高级应用（文案生成、开放式问答系统、推荐系统、文本分析等）。在实际工作中，自我的感受是，要低头赶路也要抬头看天。到目前为止，自然语言处理在工业界的落地场景其实还是相对单一，商业化程度不高的，所以在工作中要不断的提高基础能力的同时，关注最新的行业动态、技术热点，交叉学科的结合，比如跨语言、跨任务、多模态等。</p>
+<h3 id="基础入门"><a href="#基础入门" class="headerlink" title="基础入门"></a>基础入门</h3><p>对于新手来说，基础肯定的最重要的，这里有几个理论和实践结合比较好的资料，个人也是实践过，感觉比较好~</p>
 <ol>
 <li>动手学习深度学习：<a target="_blank" rel="noopener" href="https://github.com/d2l-ai/d2l-zh">https://github.com/d2l-ai/d2l-zh</a></li>
 <li>《基于BERT模型的自然语言处理实战》</li>
 <li>《自然语言处理：基于预训练的方法》</li>
 <li>Stanford EE364</li>
 <li>CMU <a target="_blank" rel="noopener" href="https://www.stat.cmu.edu/~ryantibs/convexopt/">https://www.stat.cmu.edu/~ryantibs/convexopt/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.langboat.com/academy/basics/0-basics">https://www.langboat.com/academy/basics/0-basics</a></li>
 </ol>
-<p>在对于原理全面熟悉后，可以结合实际任务多多练习。有了基本的入门基础后，可以回过头来重新思考自然语言发展的过程，神经网络发展到现在的新范式带来的启迪，最重要的是结合针对实际的业务思考技术的融合，比如我们是做对话系统的，通过产品的思维提升对算法的改进角度。</p>
-<p>在接下来的技术博客中，我将入坑后的每一段的学习思考记录下来，与大家一起分享交流。目前正在探索跨语言模型，欢迎有想法的同学一起讨论~</p>
+<p>这个阶段除了掌握基础的数理知识、机器学原理外还要着重动手实践、复现经典的算法。</p>
+<h3 id="进阶学习"><a href="#进阶学习" class="headerlink" title="进阶学习"></a>进阶学习</h3><p>根据自己的爱好，选择一个自然语言处理的领域和一个或者几个自然语言处理的任务进行深入的研究，下面是常见的自然语言处理任务：</p>
+<ol>
+<li>文本分类</li>
+<li>信息抽取</li>
+<li>文本相似度、检索</li>
+<li>问答、推理</li>
+<li>机器翻译</li>
+<li>文本生成</li>
+<li>跨语言迁移</li>
+<li>预训练模型</li>
+<li>模型加速与模型压缩</li>
+</ol>
+<p>此阶段要结合实际业务场景，考虑实际应用中遇到的痛点问题结合技术特点进行应用。关注主流技术发展、技术理论原理等。最一定程度上对一个技术点的发展有成体系的认知，并了解目前的发展趋势和挑战。</p>
+<h3 id="深入学习"><a href="#深入学习" class="headerlink" title="深入学习"></a>深入学习</h3><p>目前还在探索中…</p>
 
       
     </div>
@@ -457,8 +470,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -495,7 +517,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -518,6 +540,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">基础入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">进阶学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.</span> <span class="nav-text">深入学习</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

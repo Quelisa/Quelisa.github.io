@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="BERT," />
+  <meta name="keywords" content="PM," />
 
 
 
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="BERT自Google在2018年底推出后，就在NLP领域取得了极大地成功，大家纷纷来研究和提高BERT的性能。因此，BERT家族得以不断扩大，我们称这些改进BERT的模型为BERTTology。那么这些模型对BERT究竟做了哪些改进？又达到了怎样的效果呢？通过学习总结BERTTology模型不仅可以加深对BERT的了解，还可以感受一波大佬的研究思路！下面就一起开始吧~">
+<meta name="description" content="预训练是一种自然语言处理的新范式，一个大的在多个任务上充分训练好的模型，可以通过少量数据微调应用到下游任务中，并取得不错的效果。这种范式可以降低行业应用自然语言处理的算法任务的难度，极大地推进了自然语言处理任务的应用。预训练萌芽于词向量的发展，当2017年Google推出后，自然语言处理全面进入预训练大模型的时代，随之而来的BERT、GPT等大的预训练模型如雨后春笋般出现。带动了整个自然语言处理任">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BERT 家族的故事">
-<meta property="og:url" content="http://example.com/2022/05/11/bert-family/index.html">
+<meta property="og:title" content="我不允许你还不了解这些预训练模型">
+<meta property="og:url" content="http://example.com/2022/05/11/pretrained-model/index.html">
 <meta property="og:site_name" content="Chunxia&#39;s Blog">
-<meta property="og:description" content="BERT自Google在2018年底推出后，就在NLP领域取得了极大地成功，大家纷纷来研究和提高BERT的性能。因此，BERT家族得以不断扩大，我们称这些改进BERT的模型为BERTTology。那么这些模型对BERT究竟做了哪些改进？又达到了怎样的效果呢？通过学习总结BERTTology模型不仅可以加深对BERT的了解，还可以感受一波大佬的研究思路！下面就一起开始吧~">
+<meta property="og:description" content="预训练是一种自然语言处理的新范式，一个大的在多个任务上充分训练好的模型，可以通过少量数据微调应用到下游任务中，并取得不错的效果。这种范式可以降低行业应用自然语言处理的算法任务的难度，极大地推进了自然语言处理任务的应用。预训练萌芽于词向量的发展，当2017年Google推出后，自然语言处理全面进入预训练大模型的时代，随之而来的BERT、GPT等大的预训练模型如雨后春笋般出现。带动了整个自然语言处理任">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-05-11T08:40:46.000Z">
-<meta property="article:modified_time" content="2022-05-30T09:18:17.335Z">
+<meta property="article:modified_time" content="2022-06-02T03:59:29.249Z">
 <meta property="article:author" content="chunxia">
-<meta property="article:tag" content="BERT">
+<meta property="article:tag" content="PM">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2022/05/11/bert-family/"/>
+  <link rel="canonical" href="http://example.com/2022/05/11/pretrained-model/"/>
 
 
 
 
 
-  <title>BERT 家族的故事 | Chunxia's Blog</title>
+  <title>我不允许你还不了解这些预训练模型 | Chunxia's Blog</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/11/bert-family/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/11/pretrained-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">BERT 家族的故事</h1>
+          <h1 class="post-title" itemprop="name headline">我不允许你还不了解这些预训练模型</h1>
         
 
         <div class="post-meta">
@@ -313,8 +313,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/05/11/bert-family/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/05/11/bert-family/" itemprop="commentsCount"></span>
+                <a href="/2022/05/11/pretrained-model/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/05/11/pretrained-model/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -347,8 +347,9 @@
       
 
       
-        <p>BERT自Google在2018年底推出后，就在NLP领域取得了极大地成功，大家纷纷来研究和提高BERT的性能。因此，BERT家族得以不断扩大，我们称这些改进BERT的模型为BERTTology。那么这些模型对BERT究竟做了哪些改进？又达到了怎样的效果呢？通过学习总结BERTTology模型不仅可以加深对BERT的了解，还可以感受一波大佬的研究思路！下面就一起开始吧~<br><span id="more"></span></p>
-<h3 id="XLNet-1"><a href="#XLNet-1" class="headerlink" title="XLNet[1]"></a>XLNet[1]</h3><h3 id="RoBERTa-2"><a href="#RoBERTa-2" class="headerlink" title="RoBERTa[2]"></a>RoBERTa[2]</h3><h3 id="ALBERT-3"><a href="#ALBERT-3" class="headerlink" title="ALBERT[3]"></a>ALBERT[3]</h3><h3 id="ELECTRA-4"><a href="#ELECTRA-4" class="headerlink" title="ELECTRA[4]"></a>ELECTRA[4]</h3><h3 id="ERNIE-5"><a href="#ERNIE-5" class="headerlink" title="ERNIE[5]"></a>ERNIE[5]</h3><h3 id="BERT-WWM-6"><a href="#BERT-WWM-6" class="headerlink" title="BERT-WWM[6]"></a>BERT-WWM[6]</h3><h3 id="SpanBERT-7"><a href="#SpanBERT-7" class="headerlink" title="SpanBERT[7]"></a>SpanBERT[7]</h3><h3 id="TinyBERT-8"><a href="#TinyBERT-8" class="headerlink" title="TinyBERT[8]"></a>TinyBERT[8]</h3><h3 id="DistillBERT-9"><a href="#DistillBERT-9" class="headerlink" title="DistillBERT[9]"></a>DistillBERT[9]</h3><h3 id="Sentence-BERT-10"><a href="#Sentence-BERT-10" class="headerlink" title="Sentence-BERT[10]"></a>Sentence-BERT[10]</h3><h3 id="K-BERT-11"><a href="#K-BERT-11" class="headerlink" title="K-BERT[11]"></a>K-BERT[11]</h3><h3 id="SemBERT-12"><a href="#SemBERT-12" class="headerlink" title="SemBERT[12]"></a>SemBERT[12]</h3><h3 id="StructBERT-13"><a href="#StructBERT-13" class="headerlink" title="StructBERT[13]"></a>StructBERT[13]</h3><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Yang Z, Dai Z, Yang Y, et al. Xlnet: Generalized autoregressive pretraining for language understanding[J]. Advances in neural information processing systems, 2019, 32.<br>[2] Liu Y, Ott M, Goyal N, et al. RoBERTa: A robustly optimized BERT pretraining approach[J]. arXiv preprint arXiv:1907.11692, 2019.<br>[3] Lan Z, Chen M, Goodman S, et al. AlBERT: A lite BERT for self-supervised learning of language representations[J]. arXiv preprint arXiv:1909.11942, 2019.<br>[4] Clark K, Luong M T, Le Q V, et al. Electra: Pre-training text encoders as discriminators rather than generators[J]. arXiv preprint arXiv:2003.10555, 2020.<br>[5] Sun Y, Wang S, Li Y, et al. Ernie: Enhanced representation through knowledge integration[J]. arXiv preprint arXiv:1904.09223, 2019.<br>[6] Cui Y, Che W, Liu T, et al. Pre-training with whole word masking for chinese BERT[J]. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 2021, 29: 3504-3514.<br>[7] Joshi M, Chen D, Liu Y, et al. SpanBERT: Improving pre-training by representing and predicting spans[J]. Transactions of the Association for Computational Linguistics, 2020, 8: 64-77.<br>[8] Jiao X, Yin Y, Shang L, et al. TinyBERT: Distilling BERT for natural language understanding[J]. arXiv preprint arXiv:1909.10351, 2019.<br>[9] Sanh V, Debut L, Chaumond J, et al. DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter[J]. arXiv preprint arXiv:1910.01108, 2019.<br>[10] Reimers N, Gurevych I. Sentence-BERT: Sentence embeddings using siamese BERT-networks[J]. arXiv preprint arXiv:1908.10084, 2019.<br>[11] Liu W, Zhou P, Zhao Z, et al. K-BERT: Enabling language representation with knowledge graph[C]//Proceedings of the AAAI Conference on Artificial Intelligence. 2020, 34(03): 2901-2908.<br>[12] Zhang Z, Wu Y, Zhao H, et al. Semantics-aware BERT for language understanding[C]//Proceedings of the AAAI Conference on Artificial Intelligence. 2020, 34(05): 9628-9635.<br>[13] Wang W, Bi B, Yan M, et al. StructBERT: Incorporating language structures into pre-training for deep language understanding[J]. arXiv preprint arXiv:1908.04577, 2019.</p>
+        <p>预训练是一种自然语言处理的新范式，一个大的在多个任务上充分训练好的模型，可以通过少量数据微调应用到下游任务中，并取得不错的效果。这种范式可以降低行业应用自然语言处理的算法任务的难度，极大地推进了自然语言处理任务的应用。预训练萌芽于词向量的发展，当2017年Google推出后，自然语言处理全面进入预训练大模型的时代，随之而来的BERT、GPT等大的预训练模型如雨后春笋般出现。带动了整个自然语言处理任务快速发展的同时，还影响了机器视觉和多模态技术的发展。本篇将介绍几个目前经典的预训练语言模型~</p>
+<span id="more"></span>
+<h3 id="ELMo"><a href="#ELMo" class="headerlink" title="ELMo"></a>ELMo</h3><h3 id="BERT、RoBERT、ALBERT"><a href="#BERT、RoBERT、ALBERT" class="headerlink" title="BERT、RoBERT、ALBERT"></a>BERT、RoBERT、ALBERT</h3><h3 id="GPT、GPT-2、GPT-3"><a href="#GPT、GPT-2、GPT-3" class="headerlink" title="GPT、GPT-2、GPT-3"></a>GPT、GPT-2、GPT-3</h3><h3 id="T5、BART"><a href="#T5、BART" class="headerlink" title="T5、BART"></a>T5、BART</h3><h3 id="ERNIE、ERNIE-2-0"><a href="#ERNIE、ERNIE-2-0" class="headerlink" title="ERNIE、ERNIE 2.0"></a>ERNIE、ERNIE 2.0</h3><h3 id="UNILM、XLNet、BART"><a href="#UNILM、XLNet、BART" class="headerlink" title="UNILM、XLNet、BART"></a>UNILM、XLNet、BART</h3><h3 id="Vision-Transformer"><a href="#Vision-Transformer" class="headerlink" title="Vision Transformer"></a>Vision Transformer</h3><h3 id="UNITER、CLIP、UNIMO、Video-CLIP"><a href="#UNITER、CLIP、UNIMO、Video-CLIP" class="headerlink" title="UNITER、CLIP、UNIMO、Video CLIP"></a>UNITER、CLIP、UNIMO、Video CLIP</h3><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] </p>
 
       
     </div>
@@ -366,7 +367,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/BERT/" rel="tag"># BERT</a>
+            <a href="/tags/PM/" rel="tag"># PM</a>
           
         </div>
       
@@ -497,7 +498,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -530,7 +531,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#XLNet-1"><span class="nav-number">1.</span> <span class="nav-text">XLNet[1]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RoBERTa-2"><span class="nav-number">2.</span> <span class="nav-text">RoBERTa[2]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALBERT-3"><span class="nav-number">3.</span> <span class="nav-text">ALBERT[3]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ELECTRA-4"><span class="nav-number">4.</span> <span class="nav-text">ELECTRA[4]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ERNIE-5"><span class="nav-number">5.</span> <span class="nav-text">ERNIE[5]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BERT-WWM-6"><span class="nav-number">6.</span> <span class="nav-text">BERT-WWM[6]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpanBERT-7"><span class="nav-number">7.</span> <span class="nav-text">SpanBERT[7]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TinyBERT-8"><span class="nav-number">8.</span> <span class="nav-text">TinyBERT[8]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DistillBERT-9"><span class="nav-number">9.</span> <span class="nav-text">DistillBERT[9]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sentence-BERT-10"><span class="nav-number">10.</span> <span class="nav-text">Sentence-BERT[10]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#K-BERT-11"><span class="nav-number">11.</span> <span class="nav-text">K-BERT[11]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SemBERT-12"><span class="nav-number">12.</span> <span class="nav-text">SemBERT[12]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StructBERT-13"><span class="nav-number">13.</span> <span class="nav-text">StructBERT[13]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">14.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ELMo"><span class="nav-number">1.</span> <span class="nav-text">ELMo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BERT%E3%80%81RoBERT%E3%80%81ALBERT"><span class="nav-number">2.</span> <span class="nav-text">BERT、RoBERT、ALBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GPT%E3%80%81GPT-2%E3%80%81GPT-3"><span class="nav-number">3.</span> <span class="nav-text">GPT、GPT-2、GPT-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T5%E3%80%81BART"><span class="nav-number">4.</span> <span class="nav-text">T5、BART</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ERNIE%E3%80%81ERNIE-2-0"><span class="nav-number">5.</span> <span class="nav-text">ERNIE、ERNIE 2.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNILM%E3%80%81XLNet%E3%80%81BART"><span class="nav-number">6.</span> <span class="nav-text">UNILM、XLNet、BART</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vision-Transformer"><span class="nav-number">7.</span> <span class="nav-text">Vision Transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNITER%E3%80%81CLIP%E3%80%81UNIMO%E3%80%81Video-CLIP"><span class="nav-number">8.</span> <span class="nav-text">UNITER、CLIP、UNIMO、Video CLIP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">9.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
