@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://github.com/Quelisa/picture/raw/main/sentence-embedding/TSDAE.png">
 <meta property="og:image" content="https://github.com/Quelisa/picture/raw/main/sentence-embedding/LaBSE.png">
 <meta property="article:published_time" content="2022-05-11T08:41:14.000Z">
-<meta property="article:modified_time" content="2022-06-02T10:38:01.239Z">
+<meta property="article:modified_time" content="2022-06-06T09:10:11.638Z">
 <meta property="article:author" content="chunxia">
 <meta property="article:tag" content="Representation Learning">
 <meta property="article:tag" content="文本匹配">
@@ -358,7 +358,9 @@
 <h3 id="无监督句嵌入模型"><a href="#无监督句嵌入模型" class="headerlink" title="无监督句嵌入模型"></a>无监督句嵌入模型</h3><p>收到词向量的启发，自然地想到在自然语言处理中由于词的粒度较小，表达的信息比较离散，很多的场景需要用到句向量进行建模。而无论是将词映射的向量空间还是将句子映射到向量空间，在建模时我们都希望语义相似的句子在空间彼此靠近，而语义差别大的句子在空间中的距离彼此疏远，同时尽可能的保持空间向量分布的均匀性。一般对于BERT类型的语言模型，句向量的表示可以使用其[CLS]标志位上的向量进行表示，也可以对最后一层或者多层中所有输出采样（平均值采样、最大值采样等）后的结果进行表示。为什么采用这些数据向量而它们为什么具有语义表达的能力？它们在表示语义的时候又存在哪些问题？这就是主流的句嵌入模型研究的出发点。</p>
 <h4 id="Sentence-BERT-2"><a href="#Sentence-BERT-2" class="headerlink" title="Sentence-BERT[2]"></a>Sentence-BERT[2]</h4><p>对于计算语义文本相似度，BERT支持同时输入句子对进行计算，但是这样的结构在推理的时候，需要将所有句子的组合都经过网络计算，计算量非常大。Sentence-BERT也称SBERT采用双塔结构，分别对每个句子进行embedding，然后将embedding存起来，再进行单独的相似度计算，可以极大的提高推理速度。缺点是相对BERT的句子对计算会带来语义匹配度上的损失。</p>
 <p>SBERT的模型结构如图，图中左侧是一个训练的结构，图中右侧是一个模型的推理的结构，训练目标针对分类任务使用了交叉熵损失函数、针对相似度计算使用了均方差损失函数以及还是用了对比学习中的Triplet loss。<br><img src="https://github.com/Quelisa/picture/raw/main/sentence-embedding/SBERT.png" width="60%" height="50%"></p>
-<h4 id="BERT-flow-3-和-BERT-whitening-4"><a href="#BERT-flow-3-和-BERT-whitening-4" class="headerlink" title="BERT-flow[3] 和 BERT-whitening[4]"></a>BERT-flow[3] 和 BERT-whitening[4]</h4><h4 id="Constrastive-Tension-5"><a href="#Constrastive-Tension-5" class="headerlink" title="Constrastive Tension[5]"></a>Constrastive Tension[5]</h4><p>Constrastive Tension也称CT，这篇文章主要研究了对于STS任务transformer架构每一层的句嵌入向量的特点，然后针对句嵌入向量层敏感的特性采用对比方式进行改进。下面是几个主流模型每一层对于语义的敏感程度。<br><img src="https://github.com/Quelisa/picture/raw/main/sentence-embedding/transformer-layer-sts.png" width="60%" height="80%"><br>可以看到在最后一层的时候语义表征反而降低了。为了对抗这种语义表达的损失，CT的核心是采用两个单独的模型，初始化参数相同，对最后一层的进行平均采用，采用对比损失，最大化相同句子的相似度并最小化不同句子的相似度。感觉本质上就是一种对比训练。</p>
+<h4 id="BERT-flow-3-和-BERT-whitening-4"><a href="#BERT-flow-3-和-BERT-whitening-4" class="headerlink" title="BERT-flow[3] 和 BERT-whitening[4]"></a>BERT-flow[3] 和 BERT-whitening[4]</h4><p>BERT-flow是字节提出的基于BERT模型的改进。考虑到未经过fine-tune的BERT在语义表达上的效果还不如GloVe，为此探索BERT的语义表达能力瓶颈，是因为BERT没有学习到语义表达的能力还是BERT的语义表达能力没有被充分地发掘？根据以往的研究可以知道BERT的词嵌入表现出各向异性，空间分布呈现锥形，高频的词分布较为集中靠近锥尖，低频词距离较远原理锥尖。因此假设BERT在文本嵌入方面可能也存在类似的问题，于是作者提出了一种映射方式，将BERT的训练出的Embeddings通过一个可逆映射到均匀分布的空间，这个映射采用的flow模型，因此叫BERT-flow。</p>
+<p>BERT-whitening是追一科技提出的模型改进，他认为克服BERT本身的句嵌入空间向量集合各向异性不需要一个flow模型，只要一个线性变换就可以搞定。文本相似度计算是采用cosine计算的，cosine的计算公式是向量內积再做归一化，这个等式成立的前提是标准坐标基空间。可以通过统计学上假设，如果是标准正交基，那么它对应的向量应该表现出各向同性，而BERT句向量存在各向异性，所以认为它所属的坐标系不是标准正交基。作者指出flow模型的表达能力很弱而且模型参数很大，用一个flow模型有些浪费，而根据前面的假设推理，作者采用数据挖掘中的白化操作对向量进行线性变化，变化为一个标准的均值为0，协方差矩阵为单位阵的正态分布。</p>
+<h4 id="Constrastive-Tension-5"><a href="#Constrastive-Tension-5" class="headerlink" title="Constrastive Tension[5]"></a>Constrastive Tension[5]</h4><p>Constrastive Tension也称CT，这篇文章主要研究了对于STS任务transformer架构每一层的句嵌入向量的特点，然后针对句嵌入向量层敏感的特性采用对比方式进行改进。下面是几个主流模型每一层对于语义的敏感程度。<br><img src="https://github.com/Quelisa/picture/raw/main/sentence-embedding/transformer-layer-sts.png" width="60%" height="80%"><br>可以看到在最后一层的时候语义表征反而降低了。为了对抗这种语义表达的损失，CT的核心是采用两个单独的模型，初始化参数相同，对最后一层的进行平均采用，采用对比损失，最大化相同句子的相似度并最小化不同句子的相似度。感觉本质上就是一种对比训练。</p>
 <h4 id="SimCSE-6"><a href="#SimCSE-6" class="headerlink" title="SimCSE[6]"></a>SimCSE[6]</h4><p>SimCSE真的YYDS！完全没有花里胡哨的东西，还非常能打，最近一直在用SimCSE的方法进行对比训练，效果都有提升。SimCSE主要采用非对比学的方法，采用InfoNCE loss。创新点在于正例的选择，没有用各种奇奇怪怪的数据增强方式，仅用dropout，因为在dropout不为0时，同样的句子分别输入网络得到的句向量就是不同的。负例采用同一个batch中的其他句子。无监督学习，数据获取容易，效果好！</p>
 <p>SimCSE还做了一个监督的对比训练，其实主要是用类似于推理的数据，三个句子同时输入，前两个保持一致，最后一个句子和前面的矛盾，用来做强约束。效果比无监督的好，但是实际使用中感觉无监督更好用一些，毕竟构造高质量有监督的数据还是比较麻烦的。</p>
 <h4 id="TSDAE-7"><a href="#TSDAE-7" class="headerlink" title="TSDAE[7]"></a>TSDAE[7]</h4><p>TSDAE是基于Transformer结构的序列噪声自编码模型，模型结构如下：<br><img src="https://github.com/Quelisa/picture/raw/main/sentence-embedding/TSDAE.png" width="30%" height="40%"><br>它主要是在模型的输入中将个别词进行删除或者替换，通过encoder编码成一个固定长度的向量，然后通过decoder重建原来的输入。TSDAE在多个数据集上的测试效果都优于CT、SimCSE和BERT-flow等。</p>
@@ -397,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/05/11/pretrained-model/" rel="next" title="我不允许还有人不了解这些预训练模型">
-                <i class="fa fa-chevron-left"></i> 我不允许还有人不了解这些预训练模型
+              <a href="/2022/05/11/pretrained-model/" rel="next" title="还有人不了解这些预训练模型？">
+                <i class="fa fa-chevron-left"></i> 还有人不了解这些预训练模型？
               </a>
             
           </div>
@@ -504,7 +506,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
