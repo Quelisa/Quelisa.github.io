@@ -333,7 +333,7 @@
 
       
         
-          <p>信息抽取主要包括三个子任务：关系抽取(RE)、命名实体识别（NER）、事件抽取(EE)。</p>
+          <p>百度最近提出的新模型UIE，将实体、关系、事件和情感四大抽取任务统一建模，并在13个数据集上达到了SOTA。令人振奋的不仅是效果上的提升，还有对于信息抽取革命性的统一！信息抽取类别多，关系复杂，以往模型都是针对某一种任务提出一个模型，造成效率低下，而且无法统一管理抽取的信息之间的关系。UIE提出了一种新的信息抽取范式，极大的简化了信息抽取的复杂度。下面看看UIE是怎么做的吧！</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2022/05/24/baidu-uie-sota/#more" rel="contents">
@@ -406,7 +406,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/05/11/galaxy-task-oriented-dialog/" itemprop="url">GALAXY：采用预训练模型的任务型对话</a></h1>
+                <a class="post-title-link" href="/2022/05/11/galaxy-task-oriented-dialog/" itemprop="url">GALAXY：面向任务型对话的生成式预训练模型</a></h1>
         
 
         <div class="post-meta">
@@ -479,11 +479,14 @@
 
       
         
-          
-            <span id="more"></span>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] He W, Dai Y, Zheng Y, et al. GALAXY: A Generative Pre-trained Model for Task-Oriented Dialog with Semi-Supervised Learning and Explicit Policy Injection[J]. arXiv preprint arXiv:2111.14592, 2021.</p>
-
-          
+          <p>GALAXY[1]是阿里提出的一个针对任务型对话的预训练对话模型（Pre-trained Conversation Model，PCM），它引入了半监督学习对对话策略进行学习，在In-Car，MultiWOZ2.0和MultiWOZ2.1中达到了SOTA。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/05/11/galaxy-task-oriented-dialog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -622,7 +625,7 @@
 
       
         
-          <p>得益于神经网络的再度兴起，自然语言在语义上表示得到进一步的提高。传统的语言模型在进行自然语言任务的时候首先要将词转化为向量，然后输入到模型中进行分类或者标注任务。如何将词转化为向量呢？比较简单的想法是one-hot编码，但是one-hot有一个缺点是数据太多稀疏，而且语义没有连续性。因为语言之间存在天然的上下文联系，这种关系对于单个词的表示有很大的影响，于是研究者开始想能不能用一个模型将所有的词映射到空间中，使得语义相似的词距离较近，而语义无关的距离疏远呢？于是就有了现代的静态词向量经典算法Word2vec[1]和GloVe[2]。Word2vec由谷歌的Mikolov在2013年提出，主要有两种训练模式分别是CBOW和Skip-gram。GloVe是对Word2vec的改进，它融合了全局统计信息。虽然随着BERT的出现，这种方法已经很少使用，但是很多理论在自然语言处理中仍然有借鉴，一起来重温经典吧~</p>
+          <p>传统的语言模型在进行自然语言任务的时候首先要将词转化为向量，然后输入到模型中进行分类或者标注任务。如何将词转化为向量呢？比较简单的想法是one-hot编码，但是one-hot有一个缺点是数据太多稀疏，而且语义没有连续性。因为语言之间存在天然的上下文联系，这种关系对于单个词的表示有很大的影响，于是研究者开始想能不能用一个模型将所有的词映射到空间中，使得语义相似的词距离较近，而语义无关的距离疏远呢？于是就有了经典现代静态词向量算法Word2vec[1]和GloVe[2]。Word2vec由谷歌的Mikolov在2013年提出，主要有两种训练模式分别是CBOW和Skip-gram。GloVe是对Word2vec的改进，它融合了全局统计信息。虽然随着BERT的出现，这种方法已经很少使用，但是其方法仍然值得思考借鉴，一起来重温经典吧~</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2022/05/11/word2vec/#more" rel="contents">
@@ -1757,7 +1760,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
