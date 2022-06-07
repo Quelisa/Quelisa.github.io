@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="传统的语言模型在进行自然语言任务的时候首先要将词转化为向量，然后输入到模型中进行分类或者标注任务。如何将词转化为向量呢？比较简单的想法是one-hot编码，但是one-hot有一个缺点是数据太多稀疏，而且语义没有连续性。因为语言之间存在天然的上下文联系，这种关系对于单个词的表示有很大的影响，于是研究者开始想能不能用一个模型将所有的词映射到空间中，使得语义相似的词距离较近，而语义无关的距离疏远呢？于">
+<meta name="description" content="Word2vec由谷歌的Mikolov在2013年提出，主要有两种训练模式分别是CBOW和Skip-gram。GloVe是对Word2vec的改进，它融合了全局统计信息。虽然随着BERT的出现，这种方法已经很少使用，但是其方法仍然值得思考借鉴，一起来重温经典吧~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重温经典Word2vec &amp; GloVe">
 <meta property="og:url" content="http://example.com/2022/05/11/word2vec/index.html">
 <meta property="og:site_name" content="Chunxia&#39;s Blog">
-<meta property="og:description" content="传统的语言模型在进行自然语言任务的时候首先要将词转化为向量，然后输入到模型中进行分类或者标注任务。如何将词转化为向量呢？比较简单的想法是one-hot编码，但是one-hot有一个缺点是数据太多稀疏，而且语义没有连续性。因为语言之间存在天然的上下文联系，这种关系对于单个词的表示有很大的影响，于是研究者开始想能不能用一个模型将所有的词映射到空间中，使得语义相似的词距离较近，而语义无关的距离疏远呢？于">
+<meta property="og:description" content="Word2vec由谷歌的Mikolov在2013年提出，主要有两种训练模式分别是CBOW和Skip-gram。GloVe是对Word2vec的改进，它融合了全局统计信息。虽然随着BERT的出现，这种方法已经很少使用，但是其方法仍然值得思考借鉴，一起来重温经典吧~">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-05-11T08:42:15.000Z">
-<meta property="article:modified_time" content="2022-06-06T12:24:39.686Z">
+<meta property="article:modified_time" content="2022-06-07T04:16:30.391Z">
 <meta property="article:author" content="chunxia">
 <meta property="article:tag" content="词嵌入">
 <meta name="twitter:card" content="summary">
@@ -347,8 +347,9 @@
       
 
       
-        <p>传统的语言模型在进行自然语言任务的时候首先要将词转化为向量，然后输入到模型中进行分类或者标注任务。如何将词转化为向量呢？比较简单的想法是one-hot编码，但是one-hot有一个缺点是数据太多稀疏，而且语义没有连续性。因为语言之间存在天然的上下文联系，这种关系对于单个词的表示有很大的影响，于是研究者开始想能不能用一个模型将所有的词映射到空间中，使得语义相似的词距离较近，而语义无关的距离疏远呢？于是就有了经典现代静态词向量算法Word2vec[1]和GloVe[2]。Word2vec由谷歌的Mikolov在2013年提出，主要有两种训练模式分别是CBOW和Skip-gram。GloVe是对Word2vec的改进，它融合了全局统计信息。虽然随着BERT的出现，这种方法已经很少使用，但是其方法仍然值得思考借鉴，一起来重温经典吧~</p>
+        <p>Word2vec由谷歌的Mikolov在2013年提出，主要有两种训练模式分别是CBOW和Skip-gram。GloVe是对Word2vec的改进，它融合了全局统计信息。虽然随着BERT的出现，这种方法已经很少使用，但是其方法仍然值得思考借鉴，一起来重温经典吧~</p>
 <span id="more"></span>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>传统的语言模型在进行自然语言任务的时候首先要将词转化为向量，然后输入到模型中进行分类或者标注任务。如何将词转化为向量呢？比较简单的想法是one-hot编码，但是one-hot有一个缺点是数据太多稀疏，而且语义没有连续性。因为语言之间存在天然的上下文联系，这种关系对于单个词的表示有很大的影响，于是研究者开始想能不能用一个模型将所有的词映射到空间中，使得语义相似的词距离较近，而语义无关的距离疏远呢？于是就有了经典现代静态词向量算法Word2vec[1]和GloVe[2]。</p>
 <h3 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h3><h4 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h4><h4 id="Skip-gram"><a href="#Skip-gram" class="headerlink" title="Skip-gram"></a>Skip-gram</h4><h3 id="GloVe"><a href="#GloVe" class="headerlink" title="GloVe"></a>GloVe</h3><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Mikolov T, Chen K, Corrado G, et al. Efficient estimation of word representations in vector space[J]. arXiv preprint arXiv:1301.3781, 2013.<br>[2] Pennington J, Socher R, Manning C D. Glove: Global vectors for word representation[C]//Proceedings of the 2014 conference on empirical methods in natural language processing (EMNLP). 2014: 1532-1543.<br>[3] Mikolov T, Sutskever I, Chen K, et al. Distributed representations of words and phrases and their compositionality[J]. Advances in neural information processing systems, 2013, 26.</p>
 
       
@@ -531,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Word2vec"><span class="nav-number">1.</span> <span class="nav-text">Word2vec</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CBOW"><span class="nav-number">1.1.</span> <span class="nav-text">CBOW</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Skip-gram"><span class="nav-number">1.2.</span> <span class="nav-text">Skip-gram</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GloVe"><span class="nav-number">2.</span> <span class="nav-text">GloVe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Word2vec"><span class="nav-number">2.</span> <span class="nav-text">Word2vec</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CBOW"><span class="nav-number">2.1.</span> <span class="nav-text">CBOW</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Skip-gram"><span class="nav-number">2.2.</span> <span class="nav-text">Skip-gram</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GloVe"><span class="nav-number">3.</span> <span class="nav-text">GloVe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
