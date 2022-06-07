@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://github.com/Quelisa/picture/raw/main/information-extraction/UIE.png">
 <meta property="og:image" content="https://github.com/Quelisa/picture/raw/main/information-extraction/SEL.png">
 <meta property="article:published_time" content="2022-05-24T11:33:25.000Z">
-<meta property="article:modified_time" content="2022-06-07T08:34:05.558Z">
+<meta property="article:modified_time" content="2022-06-07T08:41:34.925Z">
 <meta property="article:author" content="chunxia">
 <meta property="article:tag" content="Information Extraction">
 <meta property="article:tag" content="SOTA">
@@ -373,7 +373,7 @@
 <li>Retrofitting Semantic Representation：训练具备基础的语义编码能力，使用原始文本（None，TEXT，TEXT）进行训练。</li>
 </ol>
 <p>微调阶段为解决自回归teacher-forcing的暴露偏差，构建了拒识噪声注入的模型微调机制。</p>
-<h3 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h3><p>少样本实验可以发现，大规模异构监督预训练可以学习通用的信息抽取能力，使模型具有更好小样本学习能力。UIE的提出只是信息抽取统一建模的开始，论文的作者也表明未来希望将类似指代消解等任务也在信息抽取中进行统一建模学习。我感觉UIE本质上还是走的大规模与训练加多任务微调的范式，但是不得不承认这种范式确实已经成为一种主流。</p>
+<h3 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h3><p>少样本实验可以发现，大规模异构监督预训练可以学习通用的信息抽取能力，使模型具有更好小样本学习能力。UIE的提出只是信息抽取统一建模的开始，论文的作者也表明未来希望将类似指代消解等任务也在信息抽取中进行统一建模学习。我感觉UIE本质上还是走的大规模预训练训练+Prompt+多任务微调的范式，但是不得不承认这种范式确实已经成为一种主流。</p>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Lu Y, Liu Q, Dai D, et al. Unified Structure Generation for Universal Information Extraction[J]. arXiv preprint arXiv:2203.12277, 2022.</p>
 
       
