@@ -87,7 +87,7 @@
 <meta property="og:description" content="自Google在2017年推出Transformer后，自然语言处理全面进入预训练大模型的时代，随之而来的BERT、GPT等大的预训练模型如雨后春笋般出现。带动了整个自然语言处理任务快速发展的同时，还影响了机器视觉和多模态技术的发展。本篇将介绍几个经典主流的预训练语言模型~">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-11-15T08:40:46.000Z">
-<meta property="article:modified_time" content="2022-06-13T12:07:10.550Z">
+<meta property="article:modified_time" content="2022-06-13T12:58:35.301Z">
 <meta property="article:author" content="chunxia">
 <meta property="article:tag" content="PM">
 <meta name="twitter:card" content="summary">
@@ -380,7 +380,13 @@
 <li>GPT-3是一种自回归模型，使用仅有解码器的体系结构。使用下一个单词预测目标进行训练。</li>
 </ol>
 <h3 id="Vision-Transformer"><a href="#Vision-Transformer" class="headerlink" title="Vision Transformer"></a>Vision Transformer</h3><p>Vision Transformer可以是看做是CV领域对NLP领域的抄作业，直接将Transformer的结构拿来，使用embedding+encode+MLP head的网络结构，主要区别在于embedding层的不同。对于标准的Transformer模块，要求输入的是token（向量）序列，即二维矩阵[num_token, token_dim]，对于图像数据而言，其数据格式为[H, W, C]是三维矩阵明显不是Transformer想要的。所以需要先通过一个Embedding层来对数据做个变换。</p>
-<h3 id="UNITER、CLIP、UNIMO、Video-CLIP"><a href="#UNITER、CLIP、UNIMO、Video-CLIP" class="headerlink" title="UNITER、CLIP、UNIMO、Video CLIP"></a>UNITER、CLIP、UNIMO、Video CLIP</h3>
+<h3 id="UNITER、CLIP、UNIMO"><a href="#UNITER、CLIP、UNIMO" class="headerlink" title="UNITER、CLIP、UNIMO"></a>UNITER、CLIP、UNIMO</h3><p>而在Transformer之前，多模态领域并未出现行之有效的预训练模型，图像和文本都各玩各的，毕竟图像的预训练是从imagenet带标签的数据上进行的，而NLP更加牛，它能自回归，能自己mask自己然后让模型去预测。与CV一样多模态预训练模型也是对NLP的抄作业。</p>
+<ol>
+<li>UNITER采用Transformer的encoder结构，主要是在embedding层有所不同，UNITER有两个Embedder，Image Embedder通过对Faster-RCNN的输出ROI feature以及其位置特征（7维，normalized top/left/bottom/right coordinates, width, height, and area.）进行融合建模，需要两个FC和一个LN操作完成。Text Embedder则参考BERT的输入，但是没有segment，然后直接接入Transformer进行双向建模，融合两种模态，从而达成目的，简单明了，不同于双流预训练模型，这两类模态共享同一个Encoder。预训练任务采用MLM，MRM(Mask Region Model, 预测图像，回归或分类，有三种变体)，ITM（Image Text Match, 图文是否一致）和WRA（Word Region Alignment, 字和图像的对齐任务）。</li>
+<li>CLIP用到了零样本学习（zero-shot learning）、自然语言理解和多模态学习等技术，来完成图像的理解。</li>
+<li>UNIMO采用类似的掩码预测自监督方法学习图像和文本的表示。同时，为了将文本和图像的表示映射到统一的语义空间，论文提出跨模态对比学习，基于图文对数据实现图像与文本的统一表示学习。</li>
+</ol>
+
       
     </div>
     
@@ -561,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ELMo"><span class="nav-number">1.</span> <span class="nav-text">ELMo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BERT%E3%80%81RoBERTa%E3%80%81ALBERT%E3%80%81ELECTRA%E3%80%81XLNet%E3%80%81MacBERT"><span class="nav-number">2.</span> <span class="nav-text">BERT、RoBERTa、ALBERT、ELECTRA、XLNet、MacBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DistilBERT%E3%80%81TinyBERT"><span class="nav-number">3.</span> <span class="nav-text">DistilBERT、TinyBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transformer-XL%E3%80%81Reformer%E3%80%81Longformer%E3%80%81BigBird"><span class="nav-number">4.</span> <span class="nav-text">Transformer-XL、Reformer、Longformer、BigBird</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BART%E3%80%81UniLM%E3%80%81T5%E3%80%81GPT-3"><span class="nav-number">5.</span> <span class="nav-text">BART、UniLM、T5、GPT-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vision-Transformer"><span class="nav-number">6.</span> <span class="nav-text">Vision Transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNITER%E3%80%81CLIP%E3%80%81UNIMO%E3%80%81Video-CLIP"><span class="nav-number">7.</span> <span class="nav-text">UNITER、CLIP、UNIMO、Video CLIP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ELMo"><span class="nav-number">1.</span> <span class="nav-text">ELMo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BERT%E3%80%81RoBERTa%E3%80%81ALBERT%E3%80%81ELECTRA%E3%80%81XLNet%E3%80%81MacBERT"><span class="nav-number">2.</span> <span class="nav-text">BERT、RoBERTa、ALBERT、ELECTRA、XLNet、MacBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DistilBERT%E3%80%81TinyBERT"><span class="nav-number">3.</span> <span class="nav-text">DistilBERT、TinyBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transformer-XL%E3%80%81Reformer%E3%80%81Longformer%E3%80%81BigBird"><span class="nav-number">4.</span> <span class="nav-text">Transformer-XL、Reformer、Longformer、BigBird</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BART%E3%80%81UniLM%E3%80%81T5%E3%80%81GPT-3"><span class="nav-number">5.</span> <span class="nav-text">BART、UniLM、T5、GPT-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vision-Transformer"><span class="nav-number">6.</span> <span class="nav-text">Vision Transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNITER%E3%80%81CLIP%E3%80%81UNIMO"><span class="nav-number">7.</span> <span class="nav-text">UNITER、CLIP、UNIMO</span></a></li></ol></div>
             
 
           </div>
