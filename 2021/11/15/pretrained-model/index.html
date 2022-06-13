@@ -87,7 +87,7 @@
 <meta property="og:description" content="自Google在2017年推出Transformer后，自然语言处理全面进入预训练大模型的时代，随之而来的BERT、GPT等大的预训练模型如雨后春笋般出现。带动了整个自然语言处理任务快速发展的同时，还影响了机器视觉和多模态技术的发展。本篇将介绍几个经典主流的预训练语言模型~">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-11-15T08:40:46.000Z">
-<meta property="article:modified_time" content="2022-06-09T12:40:08.954Z">
+<meta property="article:modified_time" content="2022-06-13T12:07:10.550Z">
 <meta property="article:author" content="chunxia">
 <meta property="article:tag" content="PM">
 <meta name="twitter:card" content="summary">
@@ -372,7 +372,15 @@
 <li>Longformer将输入文本序列的最大长度扩充到4096，提出了三种稀疏注意力模式来降低计算复杂度，分别是滑动窗口注意力，扩张滑动窗口注意力和全局注意力。</li>
 <li>BigBird使用了随机注意力、滑动窗口注意力和全局注意力三种稀疏注意力的方式对Transformer的长文本处理能力进一步进行优化，并通过理论分析证明了稀疏注意力的有效性。</li>
 </ol>
-<h3 id="T5、BART、UniLM、GPT-3"><a href="#T5、BART、UniLM、GPT-3" class="headerlink" title="T5、BART、UniLM、GPT-3"></a>T5、BART、UniLM、GPT-3</h3><h3 id="Vision-Transformer"><a href="#Vision-Transformer" class="headerlink" title="Vision Transformer"></a>Vision Transformer</h3><h3 id="UNITER、CLIP、UNIMO、Video-CLIP"><a href="#UNITER、CLIP、UNIMO、Video-CLIP" class="headerlink" title="UNITER、CLIP、UNIMO、Video CLIP"></a>UNITER、CLIP、UNIMO、Video CLIP</h3>
+<h3 id="BART、UniLM、T5、GPT-3"><a href="#BART、UniLM、T5、GPT-3" class="headerlink" title="BART、UniLM、T5、GPT-3"></a>BART、UniLM、T5、GPT-3</h3><p>前面的模型主要关注自然语言表示，而下面的模型更多的集中用于文本生成：</p>
+<ol>
+<li>BART使用了标准的seq2seq tranformer结构，BART的预训练是在于破坏原文档然后优化重构loss。BART采用了多种方式破坏原文档，即采用了多种Noise。对于序列分类（文本分类）任务，encoder和decoder部分都用相同的输入，将deocoder最后一个节点用于多类别线性分类器中。对于序列标注任务，同样是在decoder和encoder采用相同的文本输入，以decoder的隐藏节点输出用于预测每个节点的类别。由于BART的模型框架本身就采用了自回归方式，因而在finetune序列生成任务时，可直接在encoder部分输入原始文本，decoder部分用于预测待生成的文本。BART预训练模型同样也可用于将其它语言翻译为英文。</li>
+<li>UniLM通过引入attention mask实现了单向、双向和seq2seq语言模型，在双向LM模型中，没有任何mask，因为上下文信息都会被融入token中。在从左向右的单向LM模型中，矩阵上半三角会被mask掉，因为token只考虑左边的文本信息。在seq-to-seq模型中，句子s1的矩阵部分没有mask，s1因为s1融合上下文信息，句子s2矩阵的右上三角有mask，因为s2融合了s1的信息和左边的文本信息。使用完形填空和下一句预测作为预训练任务。</li>
+<li>T5从另一个角度实现了NLU和NLG的统一建模，靠着大力出奇迹，采用了Prompt的训练方式，将所有NLP任务都转化成Text-to-Text（文本到文本）任务。</li>
+<li>GPT-3是一种自回归模型，使用仅有解码器的体系结构。使用下一个单词预测目标进行训练。</li>
+</ol>
+<h3 id="Vision-Transformer"><a href="#Vision-Transformer" class="headerlink" title="Vision Transformer"></a>Vision Transformer</h3><p>Vision Transformer可以是看做是CV领域对NLP领域的抄作业，直接将Transformer的结构拿来，使用embedding+encode+MLP head的网络结构，主要区别在于embedding层的不同。对于标准的Transformer模块，要求输入的是token（向量）序列，即二维矩阵[num_token, token_dim]，对于图像数据而言，其数据格式为[H, W, C]是三维矩阵明显不是Transformer想要的。所以需要先通过一个Embedding层来对数据做个变换。</p>
+<h3 id="UNITER、CLIP、UNIMO、Video-CLIP"><a href="#UNITER、CLIP、UNIMO、Video-CLIP" class="headerlink" title="UNITER、CLIP、UNIMO、Video CLIP"></a>UNITER、CLIP、UNIMO、Video CLIP</h3>
       
     </div>
     
@@ -553,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ELMo"><span class="nav-number">1.</span> <span class="nav-text">ELMo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BERT%E3%80%81RoBERTa%E3%80%81ALBERT%E3%80%81ELECTRA%E3%80%81XLNet%E3%80%81MacBERT"><span class="nav-number">2.</span> <span class="nav-text">BERT、RoBERTa、ALBERT、ELECTRA、XLNet、MacBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DistilBERT%E3%80%81TinyBERT"><span class="nav-number">3.</span> <span class="nav-text">DistilBERT、TinyBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transformer-XL%E3%80%81Reformer%E3%80%81Longformer%E3%80%81BigBird"><span class="nav-number">4.</span> <span class="nav-text">Transformer-XL、Reformer、Longformer、BigBird</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T5%E3%80%81BART%E3%80%81UniLM%E3%80%81GPT-3"><span class="nav-number">5.</span> <span class="nav-text">T5、BART、UniLM、GPT-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vision-Transformer"><span class="nav-number">6.</span> <span class="nav-text">Vision Transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNITER%E3%80%81CLIP%E3%80%81UNIMO%E3%80%81Video-CLIP"><span class="nav-number">7.</span> <span class="nav-text">UNITER、CLIP、UNIMO、Video CLIP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ELMo"><span class="nav-number">1.</span> <span class="nav-text">ELMo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BERT%E3%80%81RoBERTa%E3%80%81ALBERT%E3%80%81ELECTRA%E3%80%81XLNet%E3%80%81MacBERT"><span class="nav-number">2.</span> <span class="nav-text">BERT、RoBERTa、ALBERT、ELECTRA、XLNet、MacBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DistilBERT%E3%80%81TinyBERT"><span class="nav-number">3.</span> <span class="nav-text">DistilBERT、TinyBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transformer-XL%E3%80%81Reformer%E3%80%81Longformer%E3%80%81BigBird"><span class="nav-number">4.</span> <span class="nav-text">Transformer-XL、Reformer、Longformer、BigBird</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BART%E3%80%81UniLM%E3%80%81T5%E3%80%81GPT-3"><span class="nav-number">5.</span> <span class="nav-text">BART、UniLM、T5、GPT-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vision-Transformer"><span class="nav-number">6.</span> <span class="nav-text">Vision Transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNITER%E3%80%81CLIP%E3%80%81UNIMO%E3%80%81Video-CLIP"><span class="nav-number">7.</span> <span class="nav-text">UNITER、CLIP、UNIMO、Video CLIP</span></a></li></ol></div>
             
 
           </div>
