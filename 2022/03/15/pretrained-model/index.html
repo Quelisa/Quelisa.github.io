@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="静态词向量,负采样," />
+  <meta name="keywords" content="PM," />
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="Word2vec由Mikolov在2013年提出，GloVe是对Word2vec的改进，它融合了全局统计信息。虽然随着BERT的出现，这种方法已经很少使用，但是其方法仍然值得思考借鉴。">
+<meta name="description" content="自Google在2017年推出Transformer后，自然语言处理全面进入预训练大模型的时代，随之而来的BERT、GPT等大的预训练模型如雨后春笋般出现。带动了整个自然语言处理任务快速发展的同时，还影响了机器视觉和多模态技术的发展。本篇将介绍几个经典主流的预训练语言模型~">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重温经典Word2vec &amp; GloVe">
-<meta property="og:url" content="http://example.com/2021/10/19/word2vec/index.html">
+<meta property="og:title" content="还有人不了解这些预训练模型？">
+<meta property="og:url" content="http://example.com/2022/03/15/pretrained-model/index.html">
 <meta property="og:site_name" content="Chunxia&#39;s Blog">
-<meta property="og:description" content="Word2vec由Mikolov在2013年提出，GloVe是对Word2vec的改进，它融合了全局统计信息。虽然随着BERT的出现，这种方法已经很少使用，但是其方法仍然值得思考借鉴。">
+<meta property="og:description" content="自Google在2017年推出Transformer后，自然语言处理全面进入预训练大模型的时代，随之而来的BERT、GPT等大的预训练模型如雨后春笋般出现。带动了整个自然语言处理任务快速发展的同时，还影响了机器视觉和多模态技术的发展。本篇将介绍几个经典主流的预训练语言模型~">
 <meta property="og:locale">
-<meta property="og:image" content="https://github.com/Quelisa/picture/raw/main/DNN/word2vec.png">
-<meta property="article:published_time" content="2021-10-19T08:42:15.000Z">
-<meta property="article:modified_time" content="2022-06-09T12:39:28.711Z">
+<meta property="article:published_time" content="2022-03-15T08:40:46.000Z">
+<meta property="article:modified_time" content="2022-08-04T03:47:55.427Z">
 <meta property="article:author" content="chunxia">
-<meta property="article:tag" content="静态词向量">
-<meta property="article:tag" content="负采样">
+<meta property="article:tag" content="PM">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/Quelisa/picture/raw/main/DNN/word2vec.png">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/10/19/word2vec/"/>
+  <link rel="canonical" href="http://example.com/2022/03/15/pretrained-model/"/>
 
 
 
 
 
-  <title>重温经典Word2vec & GloVe | Chunxia's Blog</title>
+  <title>还有人不了解这些预训练模型？ | Chunxia's Blog</title>
   
 
 
@@ -246,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/19/word2vec/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/15/pretrained-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -263,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">重温经典Word2vec & GloVe</h1>
+          <h1 class="post-title" itemprop="name headline">还有人不了解这些预训练模型？</h1>
         
 
         <div class="post-meta">
@@ -275,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-19T16:42:15+08:00">
-                2021-10-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-15T16:40:46+08:00">
+                2022-03-15
               </time>
             
 
@@ -316,8 +313,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/10/19/word2vec/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/10/19/word2vec/" itemprop="commentsCount"></span>
+                <a href="/2022/03/15/pretrained-model/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/03/15/pretrained-model/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -350,41 +347,45 @@
       
 
       
-        <p>Word2vec由Mikolov在2013年提出，GloVe是对Word2vec的改进，它融合了全局统计信息。虽然随着BERT的出现，这种方法已经很少使用，但是其方法仍然值得思考借鉴。</p>
+        <p>自Google在2017年推出Transformer后，自然语言处理全面进入预训练大模型的时代，随之而来的BERT、GPT等大的预训练模型如雨后春笋般出现。带动了整个自然语言处理任务快速发展的同时，还影响了机器视觉和多模态技术的发展。本篇将介绍几个经典主流的预训练语言模型~</p>
 <span id="more"></span>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>传统的语言模型在进行自然语言任务的时候首先要将词转化为向量，然后输入到模型中进行分类或者标注任务。如何将词转化为向量呢？比较简单的想法是one-hot编码，但是one-hot有一个缺点是数据太多稀疏，而且语义没有连续性。因为语言之间存在天然的上下文联系，这种关系对于单个词的表示有很大的影响，于是研究者开始想能不能用一个模型将所有的词映射到空间中，使得语义相似的词距离较近，而语义无关的距离疏远呢？于是就有了经典现代静态词向量算法Word2vec[1]和GloVe[2]。</p>
-<h3 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h3><p>Word2vec基于一个自然语言中有意思的假设：一个词的语义可以用它的上下文表示。因此，word2vec可以用两个模型表示，即连续词袋模型（CBOW）和跳元模型（Skip-gram），模型结构如图：<br><img src="https://github.com/Quelisa/picture/raw/main/DNN/word2vec.png" width="60%" height="40%"></p>
-<p>下面分别介绍一下这两模型。</p>
-<h4 id="连续词袋模型（CBOW）"><a href="#连续词袋模型（CBOW）" class="headerlink" title="连续词袋模型（CBOW）"></a>连续词袋模型（CBOW）</h4><p>连续词袋模型假设中⼼词是基于其在⽂本序列中的周围上下⽂词⽣成的。例如，在⽂本序列“the”、“man”、“loves”、“his”、“son”中，在“loves”为中⼼词且上下⽂窗⼝为2的情况下，连续词袋模型考虑基于上下⽂词“the”、“man”、“him”、“son”⽣成中⼼词“loves”的条件概率，即：</p>
-<script type="math/tex; mode=display">P(``love"|``the",``man",``his",``son")</script><p>CBOW模型可以分为输入层、词向量层和输出层。</p>
-<ol>
-<li>在输入层中，假设上下文窗口大小为5，则在目标词$w_t$左右各取两个词作为模型的输入。输入层由四个维度为词表长度$\mathbb{V}$的独热表示向量构成。</li>
-<li>词向量层将输入层中每个词的独热表示向量经由矩阵$E\in \mathbb{R}^{d \times |\mathbb{V}| }$映射到词向量空间：<script type="math/tex; mode=display">\pmb{v}_{w_i}=E \pmb{e}_{w_i}</script>设<script type="math/tex">w_i</script>对应的词向量即为矩阵<script type="math/tex">E</script>中相应位置的列向量，<script type="math/tex">E</script>为由所有向量组成的矩阵。令<script type="math/tex">\mathcal{c}_t = \{ w_{t-k}, \cdots, w_{t-1}, w_{t+1},  \cdots, w_{t+k} \}</script>表示<script type="math/tex">w_t</script>的上下文单词集合。对<script type="math/tex">\mathcal{c}_t</script>中所有词向量取平均，就得到了<script type="math/tex">w_t</script>的上下文表示：<script type="math/tex; mode=display">\pmb{v}_{\mathcal{C}_t} = \frac{1}{ |\mathcal{C}_t| } \sum_{w\in \mathcal{C}_t} \pmb{v}_m</script></li>
-<li>输出层根据上下文表示对目标词进行预测（分类），令<script type="math/tex">E' \in \mathbb{R}^{ |\mathbb{V} \times d | }</script>为隐含层到输出层的权值矩阵，记<script type="math/tex">\pmb{v}_{w_i}^{'}</script>为<script type="math/tex">E'</script>中与<script type="math/tex">w_i</script>对应的行向量，那么<script type="math/tex">w_t</script>的概率可以由下式计算：<script type="math/tex; mode=display">P(w_t|\mathcal{C}_t) = \frac{exp(\pmb{v}_{\mathcal{C}_t} \cdot \pmb{v}_{w_t}^{'})}{\sum_{w' \in \mathbb{V}}exp(\pmb{v}_{\mathcal{C}_t} \cdot \pmb{v}_{w'}^{'})}</script></li>
+<h3 id="ELMo"><a href="#ELMo" class="headerlink" title="ELMo"></a>ELMo</h3><p>是一种动态词向量预训练模型，它使用双向的网络结构进行建模，使用语言模型，因此是双向的。他是用C卷积神经网络对词进行embedding，主体模型使用LSTM。它在多个下游任务上表现达到了SOTA，启发了后来的预训练语言模型。</p>
+<h3 id="BERT、RoBERTa、ALBERT、ELECTRA、XLNet、MacBERT"><a href="#BERT、RoBERTa、ALBERT、ELECTRA、XLNet、MacBERT" class="headerlink" title="BERT、RoBERTa、ALBERT、ELECTRA、XLNet、MacBERT"></a>BERT、RoBERTa、ALBERT、ELECTRA、XLNet、MacBERT</h3><ol>
+<li>BETR采用了Transformer中encode部分。在输入中加入位置信息，使用了掩码语言模型（MLM）和预测下一个句子（NSP）进行预训练。因为MLM本身的建模就是双向的，所以不需要特殊的网络结构就可以实现双向的语义理解。</li>
+<li>RoBERTa是对BERT中的方法进行更加充分的发掘，增加了训练预料，使用基于字节的token，增加batch和step，并去掉了NSP预训练任务，同时对MLM任务进行优化，针对同一个本文有不同种的掩码方案。</li>
+<li>ALBERT是一个轻量级的BETR，主要是对词向量的维度进行压缩，所以模型的参数量会减少。之所以对词向量进行压缩是基于这样的假设，BERT中的词向量和输出向量的维度是一致的，但是在词级别时其实所包含的信息相对较少而且向量相对稀疏，而在上层的网络中会学习到更加复杂的语义表示，所以需要更大维度的向量表示。因为之前的试验认为NSP预训练任务过于简单，所以学习不到太多的语义，所以使用句子顺序预测任务，预测两个句子对的顺序。</li>
+<li>ELECTRA使用了生成对抗的网络结构，训练时使用两个BERT，一个做生成器，一个做判别器，使用替换词检测任务（RTD）进行预训练，预测时只是用判别器，所以生成器的模型结构可以适度减少，大概在判别器的四分之一到二分之一之间。同时由于判别器的输入没有[MASK]字符，所以与下游任务保持一致。</li>
+<li>XLNet使用了Transformer-XL作为主框架，相对传统的transformer拥有较好的性能，它使用了自回归语言模型结构，避免了[MASK]标记带来的上下游任务不一致，通过使用排列语言模型和双流自注意力实现了自编码语言模型中的双向上下文。</li>
+<li>MacBERT中应用了一种基于文本纠错的掩码语言模型，使用整词掩码和同义词替换，并采用了句子顺序预测任务进行预训练。它很好地解决了BERT使用[MASK]掩码带来的“预训练-精调”不一致问题。</li>
 </ol>
-<p>在CBOW模型的参数中，矩阵$E$和矩阵$E’$均可作为词向量矩阵，他们分别描述了词表中的词作为条件上下文的或者目标词时的不同性质。</p>
-<h4 id="跳元模型（Skip-gram）"><a href="#跳元模型（Skip-gram）" class="headerlink" title="跳元模型（Skip-gram）"></a>跳元模型（Skip-gram）</h4><p>跳元模型则适用当前词预测其上下文的词，某种程度上讲Skip-gram模型是CBOW的简化，它建立的是词与词之间的共现关系，即$P(w_{t+j}|w_t)$，其中<script type="math/tex">j\in \{\pm{1}, \cdots, \pm{k}\}</script>。以$k=2$为例，跳元模型也分为输入层、词向量层和输出层：</p>
+<h3 id="DistilBERT、TinyBERT"><a href="#DistilBERT、TinyBERT" class="headerlink" title="DistilBERT、TinyBERT"></a>DistilBERT、TinyBERT</h3><p>这类模型主要是对预训练模型进行蒸馏。知识蒸馏是一种常用的知识迁移方法，通常由教师模型和学生模型组成，在用于压缩模型方面一般可以通过设置一个更小的学生模型对原始模型进行压缩。</p>
 <ol>
-<li>输入层是当前时刻$w_t$的独热编码，通过矩阵$E$投射到隐含层；</li>
-<li>隐含层向量为<script type="math/tex">w_t</script>的词向量<script type="math/tex">\pmb{v}_{w_t}=E^T_{w_t}</script>;</li>
-<li>根据<script type="math/tex">\pmb{v}_{w_t}</script>，输出层利用线性变换矩阵<script type="math/tex">E'</script>对上下文窗口内的词进行预测：<script type="math/tex; mode=display">P(c|w_t) = \frac{exp(\pmb{v}_{w_t} \cdot \pmb{v}^{'}_c)}{\sum_{w' \in \mathbb{V}}{exp(\pmb{v}_{w_t}\cdot \pmb{v}^{'}_{w'})} }</script>其中<script type="math/tex">c\in \{ w_{t-k}, \cdots, w_{t-1}, w_{t+1},  \cdots, w_{t+k} \}</script>。</li>
+<li><p>DistilBERT是基于Triple Loss的知识蒸馏方法，教师模型使用BERT-base，学生模型是六层的BERT，使用BERT的前六层进行初始化，预训练使用MLM，损失函数是MLM损失、蒸馏损失和词向量余弦损失之和。</p>
+</li>
+<li><p>TinyBERT主要使用了额外的词向量层蒸馏和中间层蒸馏来进一步提升蒸馏的效果，并使用了两段式蒸馏进一步提升下游任务的效果。</p>
+</li>
 </ol>
-<h4 id="负采样优化"><a href="#负采样优化" class="headerlink" title="负采样优化"></a>负采样优化</h4><p>通过优化分类损失对CBOW和Skip-gram模型进行训练，需要估计的参数是$\theta = {E, {E’}}$。给定长度为$T$的词序列$w_1 w_2 \cdots w_T$，CBOW的负对数似然损失函数为：</p>
-<script type="math/tex; mode=display">\mathcal{L}(\theta) = -\sum_{t=1}^T logP(w_t|\mathcal{C}_t)</script><p>式中<script type="math/tex">\mathcal{C}_t=\{w_{t-k}, \cdots, w_{t-1}, w_{t+1}, \cdots, w_{t+k}\}</script></p>
-<p>Skip-gram模型的负对数似然损失为：</p>
-<script type="math/tex; mode=display">\mathcal{L}(\theta) = -\sum_{t=1}^T\sum_{-k\leq j\leq k,j \neq 0} logP(w_{t+j}|w_t)</script><p>当词表规模较大时，这类模型的训练会受到输出层概率归一化计算效率的影响，负采样[3]技术提供了一种全新的视角，给定词与上下文，最大化两者的共现概率，这样一来，问题就被简化为一个二分类问题，从而避免了大词表上的归一化计算。令$P(D=1|w,c)$表示$c$与$w$共现的概率：</p>
-<script type="math/tex; mode=display">P(D=1|w,c) = \sigma(\pmb{v}_w \cdot \pmb{v}_{c}^{'})</script><p>那么，两者不共现的概率为：</p>
-<script type="math/tex; mode=display">P(D=0|w,c) = 1- P(D|w,c) = \sigma(-\pmb{v}_w \cdot \pmb{v}_{c}^{'})</script><p>在CBOW模型中<script type="math/tex">\{w_t,c\}</script>是正样本，通过对<script type="math/tex">w_t</script>进行负采样和<script type="math/tex">c</script>构建负样本，构建二分类loss进行训练；在Skip-gram中，<script type="math/tex">\{w_t,w_{t+j}\}</script>为正样本，负样本取K个不出现在$w_t$上下文窗口内的词。</p>
-<h3 id="GloVe"><a href="#GloVe" class="headerlink" title="GloVe"></a>GloVe</h3><p>基于神经网络的词向量预训练方法本质上是利用文本中心词与局部上下文的共现信息作为自监督学习信号，另一类用于估计词向量的方法是基于矩阵分解的方法，这里方法主要是在整个预料上进行统计分析，获取全局统计信息“词上下文”共现矩阵，然后利用奇异值分解对矩阵进行降维。GloVe结合矩阵分解的思想来克服word2vec只关注局部特性的缺点。</p>
-<p>Glove的基本思想是利用词向量对“词-上下文”共现矩阵进行预测，从而实现隐式的矩阵分解。首先构建共现矩阵$M$，其中$M_{w,c}$表示词$w$与上下文$c$在受限窗口大小内的共现次数。GloVe模型在构建M的过程中进一步考虑了$w$和$c$的距离，认为距离远的$(w,c)$对于全局共现次数的贡献比较小，因此采用共现距离进行加权的计算方式：</p>
-<script type="math/tex; mode=display">M_{w,c} = \sum_{i}\frac{1}{d_{i}(w,c)}</script><p>式中，$d_{i}(w,c)$表示第$i$次共现发生时，$w$与$c$之间的距离。构建完共现矩阵$W$之后，就可以使用词向量对$M$中的元素进行回归拟合，具体形式：</p>
-<script type="math/tex; mode=display">\pmb{v}_w^T \pmb{v}_c^{'} + b_w + b_c^{'} = logM_{w,c}</script><p>其中<script type="math/tex">\pmb{v}_w^T</script>和<script type="math/tex">\pmb{v}_c^{'}</script>是$w$和$c$的向量表示，$b_w$和$b_c$是对应的偏置，对该回归问题进行求解即可获得词和上下文的向量表示。Glove模型的回归损失函数为：</p>
-<script type="math/tex; mode=display">\mathcal{L}({E,E',b,b'};M) = \sum_{(w,c)\in \mathbb{D}} f(M_{w,c})(\pmb{v}_w^T \pmb{v}_c^{'} + b_w + b_c^{'} - logM_{w,c})^2</script><p>其中，$f(M_{w,c})$表示每一个$(w,c)$样本的权重。样本权重与其共现次数相关，共现次数很少的样本通常被认为含有较大的噪声，所蕴含的有用信息相对频繁共现的样本也更少，因此给与较低的权重，同时也会避免给与过高的权重，因此Glove采用以下分段函数进行加权：</p>
-<script type="math/tex; mode=display">f(M_{w,c}) = \begin{cases}
-(M_{w,c}/\theta)^{\alpha}, & M_{w,c} \leq \theta \\
-1, & others
-\end{cases}</script><p>当<script type="math/tex">M_{w,c}</script>不超过阈值<script type="math/tex">\theta</script>时，<script type="math/tex">f(W_{w,c})</script>的值随<script type="math/tex">M_{w,c}</script>递增且小等1，当超出阈值时恒等1，<script type="math/tex">\alpha</script>用来控制增长速率。</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Mikolov T, Chen K, Corrado G, et al. Efficient estimation of word representations in vector space[J]. arXiv preprint arXiv:1301.3781, 2013.<br>[2] Pennington J, Socher R, Manning C D. Glove: Global vectors for word representation[C]//Proceedings of the 2014 conference on empirical methods in natural language processing (EMNLP). 2014: 1532-1543.<br>[3] Mikolov T, Sutskever I, Chen K, et al. Distributed representations of words and phrases and their compositionality[J]. Advances in neural information processing systems, 2013, 26.</p>
+<h3 id="Transformer-XL、Reformer、Longformer、BigBird"><a href="#Transformer-XL、Reformer、Longformer、BigBird" class="headerlink" title="Transformer-XL、Reformer、Longformer、BigBird"></a>Transformer-XL、Reformer、Longformer、BigBird</h3><p>Transformer因为采用自注意力机制使其空间和时间复杂度为$O(n^2)$，因此处理长文本的效率很低。虽然有一些处理长文本的trick，但是并不能解决问题本身。因此提出一些模型来解决上述问题：</p>
+<ol>
+<li>Transformer-XL提出了两种改进策略：状态复用的块级别循环和相对位置编码。</li>
+<li>Reformer引入了局部敏感哈希注意力和可逆Transformer技术，它可以帮助减少模型的内存占用，进而提高对长文本的处理能力。局部敏感哈希注意力的提出基于对Transformer中注意力机制观察的优化，首先通过实验可以看到单独计算查询和键与共享$QK$对整体性能没有太大的差异，同时全局注意力也没有必要，实际上注意力机制中更关心的是经过softmax函数激活的值，而激活的结果主要取决于数值较大的元素，因此在计算中只需要关注与当前查询关联度高的n个词，它可以极大地降低计算量。可以Transformer则是受到可以残差网络的启发，其主要思想是任意一层的激活值可以通过后续激活层进行还原。</li>
+<li>Longformer将输入文本序列的最大长度扩充到4096，提出了三种稀疏注意力模式来降低计算复杂度，分别是滑动窗口注意力，扩张滑动窗口注意力和全局注意力。</li>
+<li>BigBird使用了随机注意力、滑动窗口注意力和全局注意力三种稀疏注意力的方式对Transformer的长文本处理能力进一步进行优化，并通过理论分析证明了稀疏注意力的有效性。</li>
+</ol>
+<h3 id="BART、UniLM、T5、GPT-3"><a href="#BART、UniLM、T5、GPT-3" class="headerlink" title="BART、UniLM、T5、GPT-3"></a>BART、UniLM、T5、GPT-3</h3><p>前面的模型主要关注自然语言表示，而下面的模型更多的集中用于文本生成：</p>
+<ol>
+<li>BART使用了标准的seq2seq tranformer结构，BART的预训练是在于破坏原文档然后优化重构loss。BART采用了多种方式破坏原文档，即采用了多种Noise。对于序列分类（文本分类）任务，encoder和decoder部分都用相同的输入，将deocoder最后一个节点用于多类别线性分类器中。对于序列标注任务，同样是在decoder和encoder采用相同的文本输入，以decoder的隐藏节点输出用于预测每个节点的类别。由于BART的模型框架本身就采用了自回归方式，因而在finetune序列生成任务时，可直接在encoder部分输入原始文本，decoder部分用于预测待生成的文本。BART预训练模型同样也可用于将其它语言翻译为英文。</li>
+<li>UniLM通过引入attention mask实现了单向、双向和seq2seq语言模型，在双向LM模型中，没有任何mask，因为上下文信息都会被融入token中。在从左向右的单向LM模型中，矩阵上半三角会被mask掉，因为token只考虑左边的文本信息。在seq-to-seq模型中，句子s1的矩阵部分没有mask，s1因为s1融合上下文信息，句子s2矩阵的右上三角有mask，因为s2融合了s1的信息和左边的文本信息。使用完形填空和下一句预测作为预训练任务。</li>
+<li>T5从另一个角度实现了NLU和NLG的统一建模，靠着大力出奇迹，采用了Prompt的训练方式，将所有NLP任务都转化成Text-to-Text（文本到文本）任务。</li>
+<li>GPT-3是一种自回归模型，使用仅有解码器的体系结构。使用下一个单词预测目标进行训练。</li>
+</ol>
+<h3 id="Vision-Transformer"><a href="#Vision-Transformer" class="headerlink" title="Vision Transformer"></a>Vision Transformer</h3><p>Vision Transformer可以是看做是CV领域对NLP领域的抄作业，直接将Transformer的结构拿来，使用embedding+encode+MLP head的网络结构，主要区别在于embedding层的不同。对于标准的Transformer模块，要求输入的是token（向量）序列，即二维矩阵[num_token, token_dim]，对于图像数据而言，其数据格式为[H, W, C]是三维矩阵明显不是Transformer想要的。所以需要先通过一个Embedding层来对数据做个变换。</p>
+<h3 id="UNITER、CLIP、UNIMO"><a href="#UNITER、CLIP、UNIMO" class="headerlink" title="UNITER、CLIP、UNIMO"></a>UNITER、CLIP、UNIMO</h3><p>而在Transformer之前，多模态领域并未出现行之有效的预训练模型，图像和文本都各玩各的，毕竟图像的预训练是从imagenet带标签的数据上进行的，而NLP更加牛，它能自回归，能自己mask自己然后让模型去预测。与CV一样多模态预训练模型也是对NLP的抄作业。</p>
+<ol>
+<li>UNITER采用Transformer的encoder结构，主要是在embedding层有所不同，UNITER有两个Embedder，Image Embedder通过对Faster-RCNN的输出ROI feature以及其位置特征（7维，normalized top/left/bottom/right coordinates, width, height, and area.）进行融合建模，需要两个FC和一个LN操作完成。Text Embedder则参考BERT的输入，但是没有segment，然后直接接入Transformer进行双向建模，融合两种模态，从而达成目的，简单明了，不同于双流预训练模型，这两类模态共享同一个Encoder。预训练任务采用MLM，MRM(Mask Region Model, 预测图像，回归或分类，有三种变体)，ITM（Image Text Match, 图文是否一致）和WRA（Word Region Alignment, 字和图像的对齐任务）。</li>
+<li>CLIP用到了零样本学习（zero-shot learning）、自然语言理解和多模态学习等技术，来完成图像的理解。</li>
+<li>UNIMO采用类似的掩码预测自监督方法学习图像和文本的表示。同时，为了将文本和图像的表示映射到统一的语义空间，论文提出跨模态对比学习，基于图文对数据实现图像与文本的统一表示学习。</li>
+</ol>
 
       
     </div>
@@ -402,9 +403,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E9%9D%99%E6%80%81%E8%AF%8D%E5%90%91%E9%87%8F/" rel="tag"># 静态词向量</a>
-          
-            <a href="/tags/%E8%B4%9F%E9%87%87%E6%A0%B7/" rel="tag"># 负采样</a>
+            <a href="/tags/PM/" rel="tag"># PM</a>
           
         </div>
       
@@ -417,7 +416,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/03/02/bert-3w/" rel="next" title="BERT 知多少">
+              <a href="/2022/03/02/bert-3w/" rel="next" title="BERT 知多少">
                 <i class="fa fa-chevron-left"></i> BERT 知多少
               </a>
             
@@ -427,8 +426,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/11/15/pretrained-model/" rel="prev" title="还有人不了解这些预训练模型？">
-                还有人不了解这些预训练模型？ <i class="fa fa-chevron-right"></i>
+              <a href="/2022/03/18/cross-lingual-PLM/" rel="prev" title="跨语言预训练模型">
+                跨语言预训练模型 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -513,7 +512,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -568,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Word2vec"><span class="nav-number">2.</span> <span class="nav-text">Word2vec</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E8%AF%8D%E8%A2%8B%E6%A8%A1%E5%9E%8B%EF%BC%88CBOW%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">连续词袋模型（CBOW）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%B3%E5%85%83%E6%A8%A1%E5%9E%8B%EF%BC%88Skip-gram%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">跳元模型（Skip-gram）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%9F%E9%87%87%E6%A0%B7%E4%BC%98%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">负采样优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GloVe"><span class="nav-number">3.</span> <span class="nav-text">GloVe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ELMo"><span class="nav-number">1.</span> <span class="nav-text">ELMo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BERT%E3%80%81RoBERTa%E3%80%81ALBERT%E3%80%81ELECTRA%E3%80%81XLNet%E3%80%81MacBERT"><span class="nav-number">2.</span> <span class="nav-text">BERT、RoBERTa、ALBERT、ELECTRA、XLNet、MacBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DistilBERT%E3%80%81TinyBERT"><span class="nav-number">3.</span> <span class="nav-text">DistilBERT、TinyBERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transformer-XL%E3%80%81Reformer%E3%80%81Longformer%E3%80%81BigBird"><span class="nav-number">4.</span> <span class="nav-text">Transformer-XL、Reformer、Longformer、BigBird</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BART%E3%80%81UniLM%E3%80%81T5%E3%80%81GPT-3"><span class="nav-number">5.</span> <span class="nav-text">BART、UniLM、T5、GPT-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vision-Transformer"><span class="nav-number">6.</span> <span class="nav-text">Vision Transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNITER%E3%80%81CLIP%E3%80%81UNIMO"><span class="nav-number">7.</span> <span class="nav-text">UNITER、CLIP、UNIMO</span></a></li></ol></div>
             
 
           </div>

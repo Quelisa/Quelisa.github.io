@@ -241,7 +241,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/02/bert-3w/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/sentence-transformers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -260,7 +260,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/03/02/bert-3w/" itemprop="url">BERT 知多少</a></h1>
+                <a class="post-title-link" href="/2022/01/15/sentence-transformers/" itemprop="url">有关句嵌入模型的整理</a></h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,300 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-02T16:40:29+08:00">
-                2021-03-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-15T16:41:14+08:00">
+                2022-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Sentence-Embedding/" itemprop="url" rel="index">
+                    <span itemprop="name">Sentence Embedding</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>句向量嵌入也就是sentence embedding对于理解文本语义有很重要的作用，很多任务都需要用到sentence embedding，比如文本相似度的计算、文本检索、聚类、文本语义挖掘等。因此训练具有良好特性句向量嵌入的模型十分重要。本篇主要从sentence-transformer开源的句向量嵌入模型[1]选取几个有代表性的模型，进行分析，了解句向量发展的主流技术和面临的挑战。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/01/15/sentence-transformers/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/11/galaxy-task-oriented-dialog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chunxia's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/01/11/galaxy-task-oriented-dialog/" itemprop="url">GALAXY：面向任务型对话的生成式预训练模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-11T16:43:21+08:00">
+                2022-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%BB%E5%8A%A1%E5%9E%8B%E5%AF%B9%E8%AF%9D/" itemprop="url" rel="index">
+                    <span itemprop="name">任务型对话</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>GALAXY[1]是阿里提出的一个针对任务型对话的预训练对话模型（Pre-trained Conversation Model，PCM），它引入了半监督学习对对话策略进行学习，在In-Car，MultiWOZ2.0和MultiWOZ2.1数据集上达到了SOTA。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/01/11/galaxy-task-oriented-dialog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/19/word2vec/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chunxia's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/12/19/word2vec/" itemprop="url">重温经典Word2vec & GloVe</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-19T16:42:15+08:00">
+                2021-12-19
               </time>
             
 
@@ -333,10 +625,10 @@
 
       
         
-          <p>BERT已经提出三四年了，但是提到NLP首先想到的还是Transformer[1]、BERT[2]。像经典的CNN、RNN一样BERT也可以说Transformer也一定在会在NLP和人工智能的舞台上留下浓墨重彩的一笔，如此经典的神经网络模型，当然值得不断深入的思考和学习啦！<br>
+          <p>Word2vec由Mikolov在2013年提出，GloVe是对Word2vec的改进，它融合了全局统计信息。虽然随着BERT的出现，这种方法已经很少使用，但是其方法仍然值得思考借鉴。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/03/02/bert-3w/#more" rel="contents">
+            <a class="btn" href="/2021/12/19/word2vec/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -387,7 +679,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/06/time-mention/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/18/begin-to-learn-nlp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -406,7 +698,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/01/06/time-mention/" itemprop="url">我对时间实体mention的理解</a></h1>
+                <a class="post-title-link" href="/2021/10/18/begin-to-learn-nlp/" itemprop="url">Learning NLP</a></h1>
         
 
         <div class="post-meta">
@@ -418,154 +710,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-06T16:40:04+08:00">
-                2021-01-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB/" itemprop="url" rel="index">
-                    <span itemprop="name">实体识别</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>任务型对话中会话的推进主要依靠意图的识别和实体信息的收集。而实体识别目前在工业落地主要使用规则模板的方式来保证准确率，而且实体类别众多，每一类实体的mention要考虑的情况特别多，实现起来相对复杂，因此具有有很大的提升空间。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/06/time-mention/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/05/begin-to-learn-nlp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chunxia's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/01/05/begin-to-learn-nlp/" itemprop="url">Learning NLP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-05T17:29:16+08:00">
-                2021-01-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-18T17:29:16+08:00">
+                2021-10-18
               </time>
             
 
@@ -628,7 +774,7 @@
           <p>分享NLP学习从业心得，不断更新中…<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/01/05/begin-to-learn-nlp/#more" rel="contents">
+            <a class="btn" href="/2021/10/18/begin-to-learn-nlp/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -716,7 +862,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

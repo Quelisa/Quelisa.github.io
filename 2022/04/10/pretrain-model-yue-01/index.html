@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="mention,时间实体," />
+  <meta name="keywords" content="粤语,数据收集与清洗," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="任务型对话中会话的推进主要依靠意图的识别和实体信息的收集。而实体识别目前在工业落地主要使用规则模板的方式来保证准确率，而且实体类别众多，每一类实体的mention要考虑的情况特别多，实现起来相对复杂，因此具有有很大的提升空间。">
+<meta name="description" content="最近在做粤语模型的训练，训练的第一步，当然就是要收集数据啦！这一篇主要分享粤语语料的收集和数据处理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我对时间实体mention的理解">
-<meta property="og:url" content="http://example.com/2021/01/06/time-mention/index.html">
+<meta property="og:title" content="粤语模型训练系列之数据收集">
+<meta property="og:url" content="http://example.com/2022/04/10/pretrain-model-yue-01/index.html">
 <meta property="og:site_name" content="Chunxia&#39;s Blog">
-<meta property="og:description" content="任务型对话中会话的推进主要依靠意图的识别和实体信息的收集。而实体识别目前在工业落地主要使用规则模板的方式来保证准确率，而且实体类别众多，每一类实体的mention要考虑的情况特别多，实现起来相对复杂，因此具有有很大的提升空间。">
+<meta property="og:description" content="最近在做粤语模型的训练，训练的第一步，当然就是要收集数据啦！这一篇主要分享粤语语料的收集和数据处理。">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-01-06T08:40:04.000Z">
-<meta property="article:modified_time" content="2022-06-09T12:41:31.190Z">
+<meta property="article:published_time" content="2022-04-10T03:13:48.000Z">
+<meta property="article:modified_time" content="2022-08-04T03:47:31.497Z">
 <meta property="article:author" content="chunxia">
-<meta property="article:tag" content="mention">
-<meta property="article:tag" content="时间实体">
+<meta property="article:tag" content="粤语">
+<meta property="article:tag" content="数据收集与清洗">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/01/06/time-mention/"/>
+  <link rel="canonical" href="http://example.com/2022/04/10/pretrain-model-yue-01/"/>
 
 
 
 
 
-  <title>我对时间实体mention的理解 | Chunxia's Blog</title>
+  <title>粤语模型训练系列之数据收集 | Chunxia's Blog</title>
   
 
 
@@ -244,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/06/time-mention/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/10/pretrain-model-yue-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -261,7 +261,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">我对时间实体mention的理解</h1>
+          <h1 class="post-title" itemprop="name headline">粤语模型训练系列之数据收集</h1>
         
 
         <div class="post-meta">
@@ -273,8 +273,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-06T16:40:04+08:00">
-                2021-01-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-10T11:13:48+08:00">
+                2022-04-10
               </time>
             
 
@@ -296,8 +296,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB/" itemprop="url" rel="index">
-                    <span itemprop="name">实体识别</span>
+                  <a href="/categories/%E8%B7%A8%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">跨语言模型</span>
                   </a>
                 </span>
 
@@ -314,8 +314,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/01/06/time-mention/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/06/time-mention/" itemprop="commentsCount"></span>
+                <a href="/2022/04/10/pretrain-model-yue-01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/04/10/pretrain-model-yue-01/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -348,39 +348,28 @@
       
 
       
-        <p>任务型对话中会话的推进主要依靠意图的识别和实体信息的收集。而实体识别目前在工业落地主要使用规则模板的方式来保证准确率，而且实体类别众多，每一类实体的mention要考虑的情况特别多，实现起来相对复杂，因此具有有很大的提升空间。<br><span id="more"></span></p>
-<h3 id="实体识别和mention的关系"><a href="#实体识别和mention的关系" class="headerlink" title="实体识别和mention的关系"></a>实体识别和mention的关系</h3><p>实体识别应用比较多的主要是关系抽取和对话理解。关系抽取主要是将抽取到的实体和关系进行匹配，所以主要对实体识别的准确率要求较高。而任务型对话除了要求高精度的实体识别外还要进行实体的mention。什么是实体mention呢？我自己的理解就是，比如用户访问：”我要明天到北京的机票“。这里的”明天“要被是被成一个时间的实体，这个实体的mention是具体的那一天比如明天是2021年5月12号，这里明天对应的mention就是2021年5月12号，这样对话机器人拿到这个实体的信息才是有意义的，它才可以通过查询拿到用户需要的信息并返回给用户。</p>
-<h3 id="时间实体识别的分类"><a href="#时间实体识别的分类" class="headerlink" title="时间实体识别的分类"></a>时间实体识别的分类</h3><p>目前主流的对于时间实体识别的分类主要分为date、time和duration。</p>
+        <p>最近在做粤语模型的训练，训练的第一步，当然就是要收集数据啦！这一篇主要分享粤语语料的收集和数据处理。<br><span id="more"></span></p>
+<h3 id="粤语语料收集"><a href="#粤语语料收集" class="headerlink" title="粤语语料收集"></a>粤语语料收集</h3><p>提到多语言语料收集，Wikipedia的数据绝对是第一个想到，Wikipedia有一个专门备份的网站[2]，提高各个语种信息的备份，所有的网页内容都可以在此下载。我下载的是20220501的数据，粤语wiki的大小是88M。我在huggingface的数据集中搜到了中文和粤语的翻译平行语料：x-tech/cantonese-mandarin-translation[3]。网上有关粤语的语料有一个叫《香港二十世纪中期粤语语料库》[4]，该语料库需要注册登录，是一个检索式的语料库且不可下载。除此之外，可以直接拿到的数据少之又少0.0。所以就需要用到爬虫工具爬取一些粤语的微博、博客、电影对话等。记录一下粤语的网站：</p>
 <ol>
-<li>date是日期，例如2021年5月1日</li>
-<li>time是时间，例如12点58分</li>
-<li>duration是一个时间单位的大小，比如5年、半个月、2两小时、十秒等</li>
+<li><a target="_blank" rel="noopener" href="http://www.hkcna.hk/index.jsp?channel=2803">http://www.hkcna.hk/index.jsp?channel=2803</a></li>
+<li><a target="_blank" rel="noopener" href="https://weibo.com/u/6227634537?refer_flag=1005055013_">https://weibo.com/u/6227634537?refer_flag=1005055013_</a></li>
+<li><a target="_blank" rel="noopener" href="https://subanana.com/">https://subanana.com/</a> 是一个AI自动生成粤语字幕的网站</li>
+<li><a target="_blank" rel="noopener" href="https://commonvoice.mozilla.org/zh-CN/datasets">https://commonvoice.mozilla.org/zh-CN/datasets</a></li>
 </ol>
-<h3 id="时间实体mention的挑战"><a href="#时间实体mention的挑战" class="headerlink" title="时间实体mention的挑战"></a>时间实体mention的挑战</h3><ol>
-<li>时间分类的多样性，比如时间点、时间段、时间周期</li>
-<li>时间的规则多样性，比如2月闰年29天，平年28天，节假日的规定不固定等，导致时间的校验困难</li>
-<li>时间的颗粒度控制，比如用户关系的是小时范围发生的事还是一天范围发生的事</li>
-<li>时间表达的多样性，比如3点15分可以表达为3点一刻，还比如昨天，过去两个小时等</li>
-</ol>
-<h3 id="时间实体mention的范围"><a href="#时间实体mention的范围" class="headerlink" title="时间实体mention的范围"></a>时间实体mention的范围</h3><p>mention的划分根据不同的维度有不同的分类，由于我们的场景的任务型问答场景，所以主要针对真实场景中遇到问题进行mention的划分，为后一步的mention抽取设计做好准备。下面可以举几个实际业务中的例子进行直观感受一下。</p>
-<p>(1) 举例1：准确的时间描述<br>user：我想预定今天下午2点的《功夫熊猫》<br>bot： 好的，已为您预定2021年5月6号14:00:00的《功夫熊猫》  </p>
-<p>(2) 举例2：准确的日期描述<br>bot: 请问什么时候发货<br>user: 后天<br>bot: 好的，发货日期为2021年5月8号  </p>
-<p>(3) 举例3：准确的时间段描述<br>bot: 请问预定什么时间段呢？<br>user: 今天上午10点到11点半<br>bot: 已为您预定2021年5月6号10:00:00-2021年5月6号11:30:00的会议室  </p>
-<p>(4) 举例4：准确日期段的描述<br>bot: 请问举办日期段是？<br>user: 2021年5月6号到2021年5月12号<br>bot: 已为您预定2021年5月6号-2021年5月12号的举办场地  </p>
-<p>(5) 举例5：通过推断的时间描述<br>user: 15分钟后提醒我开会<br>bot: 好的，已为您设置2021年5月5号14:15:00开会的闹钟  </p>
-<p>(6) 举例6：通过推断的日期描述<br>bot: 请问什么时候送达<br>user: 母情节那天<br>bot: 好的，我们将在2021年5月8号为您送达。  </p>
-<p>(7) 举例7：通过推断的时间段描述<br>bot：请问你需要订阅多久<br>user：预定一个月<br>bot: 好的，已为您开通2021年5月6号00:00:00-2021年6月6号00:00:00的超级会员  </p>
-<p>(8) 举例8：通过推断的时间周期<br>bot: 请问要例会安排在什么时候<br>user: 每天早上10点<br>bot: 已为您安排每天上午10:00:00的例会  </p>
-<p>(9) 举例9：通过推断的时间周期<br>bot: 请问要安排在哪几天<br>user: 每周二和周三<br>bot: keep为您在每周二、周三安排训练  </p>
-<p>以上的mention主要将时间根据时间点和时间段进行一个大的分类，在时间点内根据时间颗粒度的不同又划分为日期和每日的时间。在这三个基本面上，根据时间的周期特性又可以延伸出周期时间点和周期时间段，根据人们日常表达中的口语特性又可以延伸出推测时间点和推测时间段。所以整体的mention类型划分如下：</p>
+<h3 id="网络爬虫介绍"><a href="#网络爬虫介绍" class="headerlink" title="网络爬虫介绍"></a>网络爬虫介绍</h3><p>网上搜索了一堆的爬虫应用和脚本，真正免费而又好用的没几个。正好淘一淘，也学习一下爬虫。找到了几个看起来还不错的爬虫服务，但是用起来体验一般，不过还是可以记录一下，毕竟做的还不错，也是一种商业化渠道。</p>
 <ol>
-<li>准确时间mention：一天内时间（time）、日期（date）和时间段（duration）以及日期时间段</li>
-<li>周期时间mention：每天的时间周期（cycle_time）、日期的周期（cycle_date）和时间段的周期（cycle_duration）</li>
-<li>推测时间mention：准确时间点+时间长度的（shift_time）、准确日期点+日期长度的（shift_date）和准确时间段+时间长度的（shift_duration）</li>
-<li>推测周期时间mention：每天的时间周期+时间长度的（cycle_shift_time）、日期的周期+日期长度的（cycle_shift_date）和时间段的周期+时间长度的（cycle_shift_duration）</li>
+<li><a target="_blank" rel="noopener" href="https://app.diffbot.com/">https://app.diffbot.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://commoncrawl.org/the-data/get-started/">https://commoncrawl.org/the-data/get-started/</a></li>
+<li><a target="_blank" rel="noopener" href="https://webz.io/">https://webz.io/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.parsehub.com/">https://www.parsehub.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.scrapingbee.com/">https://www.scrapingbee.com/</a></li>
 </ol>
-<h3 id="设计遐想"><a href="#设计遐想" class="headerlink" title="设计遐想"></a>设计遐想</h3><p>在明确了mention分类后，其实已经有了整体的mention框架，mention的第一步无疑是进行时间实体的识别，识别的归类是date、time和duration，除了识别时间外还要识别。实体识别后要进行一步归一化处理，抽取出标准的表达，例如“2021年5月6日”识别为一个准确date的实体，具体归一化为一个标准的表达“2021年5月6号”。“明天”则识别为推测时间，在归一化时需要取得当前日期，在当前日期上进行时长运算得到标准的时间表达“2021年5月7日”。对于周期性的时间表达，如每周六等系统默认给出一个范围内的所有周六的计算方式。</p>
-<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><p>这是一个初步的设计的思路，后续有空补详细代码设计和代码实现。</p>
+<h3 id="语料数据清洗"><a href="#语料数据清洗" class="headerlink" title="语料数据清洗"></a>语料数据清洗</h3><p>前面提到的wiki数据还是带有网络格式的数据，并不能直接用于模型训练，而且数据质量并没有经过筛选。下面介绍一个好用的工具GENSIM[5]，用来直接抽取wiki中的文本数据。下面的代码可以抽取出wiki的内容，但是它会去掉所有的标点符号用空格代替。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gensim.corpora <span class="keyword">import</span> WikiCorpus</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    output = <span class="built_in">open</span>(<span class="string">&#x27;wiki.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    wiki = WikiCorpus(<span class="string">&quot;wiki-xxx.xml.bz2&quot;</span>, dictionary=&#123;&#125;)</span><br><span class="line">    <span class="keyword">for</span> text <span class="keyword">in</span> wiki.get_texts():</span><br><span class="line">        output.write(<span class="string">&quot; &quot;</span>.join(text) + <span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    output.close()		 </span><br></pre></td></tr></table></figure>
+<p>后续参考苏神的代码，重新对wiki数据进行了整理，清洗代码在代码仓库：<a target="_blank" rel="noopener" href="https://github.com/Quelisa/data_cleaner.git">https://github.com/Quelisa/data_cleaner.git</a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>因为粤语的收集难度确实大于中文的收集难度，并且我们已经知道这两个模型都支持中文并且都已经在大规模的中文数据集上进行了训练，所以我打算利用一些现成的中文数据集和收集到的粤语语料分别进行单语种的训练，然后主要通过收集到的平行语料进行中文和粤语的对齐训练，因为可用的平行语料不是很多所以可以通过翻译的方式获得。语料收集是算法训练中看似枯燥，却又极其重要的一步，语料的质量直接关系到模型效果的好坏，可谓是失之毫厘谬以千里。收集并设计好的语料库，高效的开发工具和科学的处理方法同样重要！第一次真正意义上感受到了big data和数据质量的重要性！</p>
+<p>目前专门针对粤语的预训练语言模型只有哈工大讯飞联合实验室发布的CINO (Chinese minority PLM)[1]，理论上具有和粤语语系相近的多语言模型也具有一定的粤语识别能力。在LaBSE的论文中看到,虽然没有用到粤语训练，但是粤语的识别效果也比较可观。所以打算在CINO和LaBSE上针对粤语再进行训练，以提高粤语的意图识别能力。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] <a target="_blank" rel="noopener" href="https://github.com/ymcui/Chinese-Minority-PLM">https://github.com/ymcui/Chinese-Minority-PLM</a><br>[2] <a target="_blank" rel="noopener" href="https://dumps.wikimedia.org/zh_yuewiki/">https://dumps.wikimedia.org/zh_yuewiki/</a><br>[3] <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/x-tech/cantonese-mandarin-translations">https://huggingface.co/datasets/x-tech/cantonese-mandarin-translations</a><br>[4] <a target="_blank" rel="noopener" href="https://hkcc.eduhk.hk/v1/introduction.html">https://hkcc.eduhk.hk/v1/introduction.html</a><br>[5] <a target="_blank" rel="noopener" href="https://radimrehurek.com/gensim/apiref.html#api-reference">https://radimrehurek.com/gensim/apiref.html#api-reference</a></p>
 
       
     </div>
@@ -398,9 +387,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mention/" rel="tag"># mention</a>
+            <a href="/tags/%E7%B2%A4%E8%AF%AD/" rel="tag"># 粤语</a>
           
-            <a href="/tags/%E6%97%B6%E9%97%B4%E5%AE%9E%E4%BD%93/" rel="tag"># 时间实体</a>
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B8%8E%E6%B8%85%E6%B4%97/" rel="tag"># 数据收集与清洗</a>
           
         </div>
       
@@ -413,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/01/05/begin-to-learn-nlp/" rel="next" title="Learning NLP">
-                <i class="fa fa-chevron-left"></i> Learning NLP
+              <a href="/2022/03/18/cross-lingual-PLM/" rel="next" title="跨语言预训练模型">
+                <i class="fa fa-chevron-left"></i> 跨语言预训练模型
               </a>
             
           </div>
@@ -423,8 +412,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/03/02/bert-3w/" rel="prev" title="BERT 知多少">
-                BERT 知多少 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/05/06/roformer/" rel="prev" title="预训练模型RoFormer浅析">
+                预训练模型RoFormer浅析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -509,7 +498,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -564,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB%E5%92%8Cmention%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.</span> <span class="nav-text">实体识别和mention的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">时间实体识别的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%AE%9E%E4%BD%93mention%E7%9A%84%E6%8C%91%E6%88%98"><span class="nav-number">3.</span> <span class="nav-text">时间实体mention的挑战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%AE%9E%E4%BD%93mention%E7%9A%84%E8%8C%83%E5%9B%B4"><span class="nav-number">4.</span> <span class="nav-text">时间实体mention的范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E9%81%90%E6%83%B3"><span class="nav-number">5.</span> <span class="nav-text">设计遐想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TODO"><span class="nav-number">6.</span> <span class="nav-text">TODO</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B2%A4%E8%AF%AD%E8%AF%AD%E6%96%99%E6%94%B6%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">粤语语料收集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">网络爬虫介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%96%99%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97"><span class="nav-number">3.</span> <span class="nav-text">语料数据清洗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
